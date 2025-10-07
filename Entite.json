@@ -1,0 +1,19 @@
+{"results":[{"columns":[{"name":"ENTITE_CODE","type":"VARCHAR2"},{"name":"ENTITE_LIB","type":"VARCHAR2"},{"name":"ENTITE_LIB_LONG","type":"VARCHAR2"},{"name":"ENTITE_RESP","type":"VARCHAR2"},{"name":"ENTITE_ASSIGN","type":"VARCHAR2"},{"name":"ENTITE_LIB_MINUSC","type":"VARCHAR2"}],"items":
+[
+{"entite_code":"09","entite_lib":"EECI","entite_lib_long":"ENERGIE ELECTRIQUE DE C'ÔTE D'IVOIRE","entite_resp":"Me DADIE","entite_assign":"LA DIRECTION GENERALE DU TRESOR  et de la COMPTABILITE PUBLIQUE","entite_lib_minusc":"Eeci"}
+,{"entite_code":"11","entite_lib":"ETAT CÔTE D'IVOIRE - BNI","entite_lib_long":"ETAT CÔTE D'IVOIRE BNI"}
+,{"entite_code":"10","entite_lib":"BHCI","entite_lib_long":"BANQUE DE L'HABITAT DE CÔTE D'IVOIRE"}
+,{"entite_code":"13","entite_lib":"BNI- COMITE"}
+,{"entite_code":"14","entite_lib":"FONDS DE GARANTIE CAFE CACAO"}
+,{"entite_code":"15","entite_lib":"SFD","entite_lib_long":"SYSTEME FINANCIER DECENTRALISE"}
+,{"entite_code":"07","entite_lib":"VERSUS BANK","entite_lib_long":"VERSUS BANK","entite_lib_minusc":"Versus Bank"}
+,{"entite_code":"08","entite_lib":"BFA COMITE","entite_lib_minusc":"Bfa"}
+,{"entite_code":"06","entite_lib":"BNI","entite_lib_long":"BANQUE NATIONALE D'INVESTISSEMENT","entite_resp":"Me DADIE","entite_assign":"LA DIRECTION GENERALE DU TRESOR  et de la COMPTABILITE PUBLIQUE","entite_lib_minusc":"Bni"}
+,{"entite_code":"01","entite_lib":"L'ACCC","entite_lib_long":"L'Agence Comptable des Créances Contentieuses","entite_resp":"N'DRI N'GUESSAN","entite_assign":"LA DIRECTION GENERALE DU TRESOR  et de la COMPTABILITE PUBLIQUE","entite_lib_minusc":"L'accc"}
+,{"entite_code":"05","entite_lib":"LA SONARECI","entite_lib_long":"La Société Nationale de Recouvrement de Côte d'Ivoire","entite_resp":"Veh Sonh","entite_assign":"LA SOCIETE NATIONALE DE RECOUVREMENT DE CÔTE D'IVOIRE","entite_lib_minusc":"La Sonareci"}
+,{"entite_code":"04","entite_lib":"LA SOGEFIHA","entite_lib_long":"SOciété de GEstion FInancière de l'HAbitat","entite_resp":"MME TRAORE","entite_assign":"LA SOGEFIHA","entite_lib_minusc":"La Sogefiha"}
+,{"entite_code":"03","entite_lib":"LES FONDS SOCIAUX","entite_resp":"OUATTARA","entite_assign":"L'EX - CAISSE AUTONOME D'AMORTISSEMENT (EX - C.A.A.)","entite_lib_minusc":"Les Fonds Sociaux"}
+,{"entite_code":"02","entite_lib":"LA CAISTAB","entite_assign":"L'EX - CAISSE AUTONOME D'AMORTISSEMENT (EX - C.A.A.)","entite_lib_minusc":"La Caistab"}
+,{"entite_code":"12","entite_lib":"BFA LIQUIDATION"}
+,{"entite_code":"17","entite_lib":"VEHICULES REFORMES ACCC","entite_lib_long":"VEHICULES REFORMES ACCC"}
+]}]}

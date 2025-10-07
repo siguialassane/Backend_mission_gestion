@@ -1,0 +1,196 @@
+{"results":[{"columns":[{"name":"VILLE_CODE","type":"VARCHAR2"},{"name":"VILLE_LIB","type":"VARCHAR2"},{"name":"VILLE_LIB_LONG","type":"VARCHAR2"},{"name":"VILLE_NUM","type":"VARCHAR2"}],"items":
+[
+{"ville_code":"9","ville_lib":"AGOU","ville_lib_long":"VILLE D'AGOU                                        5  4 21","ville_num":"9"}
+,{"ville_code":"10","ville_lib":"AKOUPE","ville_lib_long":"VILLE D'AKOUPE                                      5  4 22","ville_num":"10"}
+,{"ville_code":"11","ville_lib":"ALEPE","ville_lib_long":"VILLE D'ALEPE                                       5  2  5","ville_num":"11"}
+,{"ville_code":"12","ville_lib":"ANOUMABA","ville_lib_long":"VILLE D'ANOUMABA                                    1 11 40","ville_num":"12"}
+,{"ville_code":"13","ville_lib":"ANYAMA","ville_lib_long":"VILLE D'ANYAMA                                      5  2  6","ville_num":"13"}
+,{"ville_code":"15","ville_lib":"ASSUEFRY","ville_lib_long":"VILLE D'ASSUEFRY                                    3 43162","ville_num":"15"}
+,{"ville_code":"17","ville_lib":"AZAGUIE","ville_lib_long":"VILLE D'AZAGUIE                                     5  5 25","ville_num":"17"}
+,{"ville_code":"19","ville_lib":"BANGOLO","ville_lib_long":"VILLE DE BANGOLO                                    8  7 28","ville_num":"19"}
+,{"ville_code":"20","ville_lib":"BASSAWA","ville_lib_long":"VILLE DE BASSAWA                                    2 16 57","ville_num":"20"}
+,{"ville_code":"22","ville_lib":"BEOUMI","ville_lib_long":"VILLE DE BEOUMI                                     2  8 29","ville_num":"22"}
+,{"ville_code":"24","ville_lib":"BIANKOUMA","ville_lib_long":"VILLE  DE BIANKOUMA                                 8  9 31","ville_num":"24"}
+,{"ville_code":"25","ville_lib":"BINGERVILLE","ville_lib_long":"VILLE DE BINGERVILLE                                5  2  7","ville_num":"25"}
+,{"ville_code":"28","ville_lib":"BOCANDA","ville_lib_long":"VILLE DE BOCANDA                                    1 20 73","ville_num":"28"}
+,{"ville_code":"29","ville_lib":"BODOKRO","ville_lib_long":"VOLLE DE BODOKRO                                    2  8 30","ville_num":"29"}
+,{"ville_code":"31","ville_lib":"BONGOUANOU","ville_lib_long":"VILLE DE BOUGOUANOU                                 1 11 37","ville_num":"31"}
+,{"ville_code":"33","ville_lib":"BONON","ville_lib_long":"VILLE DE BONON                                      7 12 41","ville_num":"33"}
+,{"ville_code":"35","ville_lib":"BOOKO","ville_lib_long":"VILLE DE BOOKO                                      9 46171","ville_num":"35"}
+,{"ville_code":"37","ville_lib":"BOTRO","ville_lib_long":"VILLE DE BOTRO                                      2 13 43","ville_num":"37"}
+,{"ville_code":"38","ville_lib":"BOUAFLE","ville_lib_long":"VILLE DE BOUAFLE                                    7 12 42","ville_num":"38"}
+,{"ville_code":"40","ville_lib":"BOUNA","ville_lib_long":"VILLE DE BOUNA                                      3 14 48","ville_num":"40"}
+,{"ville_code":"42","ville_lib":"BROBO","ville_lib_long":"VILLE DE BROBO                                      2 13 45","ville_num":"42"}
+,{"ville_code":"44","ville_lib":"DABAKALA","ville_lib_long":"VILLE DE DABAKALA                                   2 16 59","ville_num":"44"}
+,{"ville_code":"46","ville_lib":"DALOA","ville_lib_long":"VILLE                                               7 17 64","ville_num":"46"}
+,{"ville_code":"47","ville_lib":"DANANE","ville_lib_long":"VILLE DE DANANE                                     8 18 68","ville_num":"47"}
+,{"ville_code":"49","ville_lib":"VILLE DIABO","ville_lib_long":"VILLE DE DIABO                                      2 13 46","ville_num":"49"}
+,{"ville_code":"51","ville_lib":"DIAWALA","ville_lib_long":"VILLE DE DIAWALA                                   10 23 81","ville_num":"51"}
+,{"ville_code":"53","ville_lib":"DIEGONEFLA","ville_lib_long":"VILLE DE DIEGINEFLA                                 7 35140","ville_num":"53"}
+,{"ville_code":"55","ville_lib":"DIMBOKRO","ville_lib_long":"VILLE DE DIMBOKRO                                   1 20 74","ville_num":"55"}
+,{"ville_code":"56","ville_lib":"DIOULATIEDOUGOU","ville_lib_long":"VILLE DE DIOULATIEDOUGOU                            9 34129","ville_num":"56"}
+,{"ville_code":"58","ville_lib":"DJEBONOUA","ville_lib_long":"VILLE DE DJEONOUA                                   2 13 47","ville_num":"58"}
+,{"ville_code":"60","ville_lib":"DJIBROSSO","ville_lib_long":"VILLE DE DJIBROSSO                                  9 39147","ville_num":"60"}
+,{"ville_code":"62","ville_lib":"DUALLA","ville_lib_long":"VILLE DE DUALLA                                     9 39148","ville_num":"62"}
+,{"ville_code":"64","ville_lib":"ETTROKRO","ville_lib_long":"VILLE DE ETTROKRO                                   1 19 71","ville_num":"64"}
+,{"ville_code":"65","ville_lib":"FACOBKY","ville_lib_long":"VILLE DE FACOBLY                                    8 31115","ville_num":"65"}
+,{"ville_code":"67","ville_lib":"FOUMBOLO","ville_lib_long":"VILLE DE FOUMBOLO                                   2 16 60","ville_num":"67"}
+,{"ville_code":"69","ville_lib":"FRONAN","ville_lib_long":"VILLE DE FRONAN                                     2 28 97","ville_num":"69"}
+,{"ville_code":"71","ville_lib":"GBOGUHE","ville_lib_long":"VILLE DE GBOGUHE                                    7 17 65","ville_num":"71"}
+,{"ville_code":"73","ville_lib":"GBONNE","ville_lib_long":"VILLE DE GBONNE                                     8  9 32","ville_num":"73"}
+,{"ville_code":"74","ville_lib":"GOHITAFLA","ville_lib_long":"VILLE DE GOHITAFLA                                  7 50186","ville_num":"74"}
+,{"ville_code":"75","ville_lib":"GOULIA","ville_lib_long":"VILLE DE GOULIA                                     9 34130","ville_num":"75"}
+,{"ville_code":"76","ville_lib":"GRABO","ville_lib_long":"VILLE DE GRABO                                      6 42160","ville_num":"76"}
+,{"ville_code":"77","ville_lib":"GRAND-BASSAM","ville_lib_long":"VILLE DE GRAND-BASSAM                               5  2 10","ville_num":"77"}
+,{"ville_code":"78","ville_lib":"GRAND-BEREBY","ville_lib_long":"VILLE DE GRAND-BEREBY                               6 37143","ville_num":"78"}
+,{"ville_code":"79","ville_lib":"GRAND-LAHOU","ville_lib_long":"VILLE DE GRAND-LAHOU                                5 25 90","ville_num":"79"}
+,{"ville_code":"80","ville_lib":"GRAND-ZATRY","ville_lib_long":"VILLE DE GRAND-ZATRY                                6 41158","ville_num":"80"}
+,{"ville_code":"81","ville_lib":"GUEYO","ville_lib_long":"VILLE DE GUEYO                                      6 38145","ville_num":"81"}
+,{"ville_code":"82","ville_lib":"GUIBEROUA","ville_lib_long":"VILLE DE GUIBEROUA                                  7 24 88","ville_num":"82"}
+,{"ville_code":"83","ville_lib":"GUIEMBE","ville_lib_long":"VILLE DE GUIEMBE                                   10 29103","ville_num":"83"}
+,{"ville_code":"84","ville_lib":"GUIGLO","ville_lib_long":"VILLE DE GUIGLO                                     8 26 92","ville_num":"84"}
+,{"ville_code":"85","ville_lib":"GUINTEGUELA","ville_lib_long":"VILLE DE GUINTEGUELA                                9 46173","ville_num":"85"}
+,{"ville_code":"86","ville_lib":"GUITRY","ville_lib_long":"VILLE DE GUITRY                                     5 21 78","ville_num":"86"}
+,{"ville_code":"88","ville_lib":"ISSIA","ville_lib_long":"VILLE DE ISSIA                                      7 27 95","ville_num":"88"}
+,{"ville_code":"90","ville_lib":"KANAKONO","ville_lib_long":"VILLE DE KANAKONO                                  10 44167","ville_num":"90"}
+,{"ville_code":"92","ville_lib":"KANIASSO","ville_lib_long":"VILLE DE KANIASSO                                   9 34131","ville_num":"92"}
+,{"ville_code":"94","ville_lib":"KASSERE","ville_lib_long":"VILLE DE KASSERE                                   10 15 54","ville_num":"94"}
+,{"ville_code":"95","ville_lib":"KATIOLA","ville_lib_long":"VILLE DE KATIOLA                                    2 28 98","ville_num":"95"}
+,{"ville_code":"97","ville_lib":"KOLIA","ville_lib_long":"VILLE DE KOLIA                                     10 15 55","ville_num":"97"}
+,{"ville_code":"99","ville_lib":"KONG","ville_lib_long":"VILLE DE KONG                                      10 23 83","ville_num":"99"}
+,{"ville_code":"101","ville_lib":"KOONAN","ville_lib_long":"VILLE DE KOONAN                                     9 46174","ville_num":"101"}
+,{"ville_code":"102","ville_lib":"KORHOGO","ville_lib_long":"VILLE DE KORHOGO                                   10 29105","ville_num":"102"}
+,{"ville_code":"104","ville_lib":"KOUASSI DATEKRO","ville_lib_long":"VILLE DE KOUASSI DATEKRO                            3 43163","ville_num":"104"}
+,{"ville_code":"106","ville_lib":"KOUIBLY","ville_lib_long":"VILLE DE KOULIBLY                                   8 31116","ville_num":"106"}
+,{"ville_code":"109","ville_lib":"KOUN-FAO","ville_lib_long":"VILLE DE KOUN-FAO                                   3 43164","ville_num":"109"}
+,{"ville_code":"110","ville_lib":"KOUTO","ville_lib_long":"VILLE DE KOUTO                                     10 15 56","ville_num":"110"}
+,{"ville_code":"111","ville_lib":"LAKOTA","ville_lib_long":"VILLE DE LAKOTA                                     5 30113","ville_num":"111"}
+,{"ville_code":"888","ville_lib":"LOCALITE INCONNUE","ville_lib_long":"VILLE DE LOCALITE INCONUE                          88888888","ville_num":"888"}
+,{"ville_code":"122","ville_lib":"M'BATTO","ville_lib_long":"VILLE DE M'BATTO                                    1 11 38","ville_num":"122"}
+,{"ville_code":"113","ville_lib":"MADINANI","ville_lib_long":"VILLE DE MADINANI                                   9 34132","ville_num":"113"}
+,{"ville_code":"115","ville_lib":"MAN","ville_lib_long":"VILLE DE MAN                                        8 31118","ville_num":"115"}
+,{"ville_code":"116","ville_lib":"MANKONO","ville_lib_long":"VILLE DE MANKONO                                    9 32123","ville_num":"116"}
+,{"ville_code":"118","ville_lib":"MEAGUI","ville_lib_long":"VILLE DE MEAGUI                                     6 41157","ville_num":"118"}
+,{"ville_code":"120","ville_lib":"MORONDO","ville_lib_long":"VILLE DE MORONDO                                    9 39151","ville_num":"120"}
+,{"ville_code":"125","ville_lib":"NASSASIAN","ville_lib_long":"VILLE DE NASSIAN                                    3 14 50","ville_num":"125"}
+,{"ville_code":"127","ville_lib":"NIAKARAMADOUGOU","ville_lib_long":"VILLE DE NIAKARAMADOUGOU                            2 28 99","ville_num":"127"}
+,{"ville_code":"128","ville_lib":"NIELLE","ville_lib_long":"VILLE DE NIELLE                                    10 23 85","ville_num":"128"}
+,{"ville_code":"130","ville_lib":"ODIENNE","ville_lib_long":"VILLE DE D'ODIENNE                                  9 34134","ville_num":"130"}
+,{"ville_code":"132","ville_lib":"OUANINOU","ville_lib_long":"VILLE DE OUANINOU                                   9 46176","ville_num":"132"}
+,{"ville_code":"134","ville_lib":"OUME","ville_lib_long":"VILLE D'OUME                                        7 35141","ville_num":"134"}
+,{"ville_code":"136","ville_lib":"PRIKRO","ville_lib_long":"VILLE DE PRIKRO                                     2 33127","ville_num":"136"}
+,{"ville_code":"137","ville_lib":"RUBINO","ville_lib_long":"VILLE DE RUBINO                                     5  6 26","ville_num":"137"}
+,{"ville_code":"139","ville_lib":"SAKASSOU","ville_lib_long":"VILLE DE SAKASSOU                                   2 36142","ville_num":"139"}
+,{"ville_code":"143","ville_lib":"SAN-PEDRO","ville_lib_long":"VILLE DE SAN-PEDRO                                  6 37144","ville_num":"143"}
+,{"ville_code":"142","ville_lib":"SANGOUINE","ville_lib_long":"VILLE DE SANGOUINE                                  8 31119","ville_num":"142"}
+,{"ville_code":"144","ville_lib":"SARHALA","ville_lib_long":"VILLE DE SARHALA                                    9 32124","ville_num":"144"}
+,{"ville_code":"146","ville_lib":"SATAMA-SOKORO","ville_lib_long":"VILLE DE SATAMA-SOKORO                              2 16 61","ville_num":"146"}
+,{"ville_code":"148","ville_lib":"SEGUELA","ville_lib_long":"VILLE DE SEGUELA                                    9 39152","ville_num":"148"}
+,{"ville_code":"149","ville_lib":"SEGUELON","ville_lib_long":"VILLE DE SEGUELON                                   9 34136","ville_num":"149"}
+,{"ville_code":"150","ville_lib":"SEYDOUGOU","ville_lib_long":"VILLE DE SEYDOUGOU                                  9 34137","ville_num":"150"}
+,{"ville_code":"151","ville_lib":"SIFIE","ville_lib_long":"VILLE DE SIFIE                                      9 39153","ville_num":"151"}
+,{"ville_code":"152","ville_lib":"SIKENSI","ville_lib_long":"VILLE DE SIKENSI                                    5  2 12","ville_num":"152"}
+,{"ville_code":"153","ville_lib":"SINEMATIALI","ville_lib_long":"VILLE DE SINEMATIALI                               10 29110","ville_num":"153"}
+,{"ville_code":"154","ville_lib":"SINFRA","ville_lib_long":"VILLE DE SINFRA                                     7 40155","ville_num":"154"}
+,{"ville_code":"155","ville_lib":"SIPILOU","ville_lib_long":"VILLE DE SIPILOU                                    8  9 33","ville_num":"155"}
+,{"ville_code":"156","ville_lib":"SIRASSO","ville_lib_long":"VILLE DE SIRASSO                                   10 29111","ville_num":"156"}
+,{"ville_code":"157","ville_lib":"SONGON","ville_lib_long":"VILLE DE SONGON                                     5  2 13","ville_num":"157"}
+,{"ville_code":"158","ville_lib":"SOUBRE","ville_lib_long":"VILLE DE SOUBRE                                     6 41159","ville_num":"158"}
+,{"ville_code":"159","ville_lib":"TAABO","ville_lib_long":"VILLE DE TAABO                                      5 45169","ville_num":"159"}
+,{"ville_code":"161","ville_lib":"TAFIRE","ville_lib_long":"VILLE DE TAFIRE                                     2 28100","ville_num":"161"}
+,{"ville_code":"163","ville_lib":"TANDA","ville_lib_long":"VILLE DE TANDA                                      3 43165","ville_num":"163"}
+,{"ville_code":"165","ville_lib":"TENGRELA","ville_lib_long":"VILLE DE TENGRELA                                  10 44168","ville_num":"165"}
+,{"ville_code":"166","ville_lib":"TIAPOUM","ville_lib_long":"VILLE DE TIAPOUM                                    5  3 18","ville_num":"166"}
+,{"ville_code":"173","ville_lib":"TIE-N'DIEKRO","ville_lib_long":"VILLE DE TIE-N'DIEKRO                               1 49184","ville_num":"173"}
+,{"ville_code":"169","ville_lib":"TIEME","ville_lib_long":"VILLE DE TIEME                                      9 34138","ville_num":"169"}
+,{"ville_code":"171","ville_lib":"TIENINGBOUE","ville_lib_long":"VILLE DE TIENINGBOUE                                9 32125","ville_num":"171"}
+,{"ville_code":"174","ville_lib":"TIORONIARADOUGOU","ville_lib_long":"VILLE DE TIORONIARADOUGOU                          10 29112","ville_num":"174"}
+,{"ville_code":"175","ville_lib":"TORTIYA","ville_lib_long":"VILLE DE TORTIYA                                    2 28101","ville_num":"175"}
+,{"ville_code":"177","ville_lib":"TOULEPLEU","ville_lib_long":"VILLE DE TOULEPLEU                                  8 26 94","ville_num":"177"}
+,{"ville_code":"179","ville_lib":"TRANSUA","ville_lib_long":"VILLE DE TRANSUA                                    3 43166","ville_num":"179"}
+,{"ville_code":"181","ville_lib":"WOROFLA","ville_lib_long":"VILLE DE WOROFLA                                    9 39154","ville_num":"181"}
+,{"ville_code":"183","ville_lib":"YAMOUSSOUKRO","ville_lib_long":"VILLE DE YAMOUSSOUKRO                               1 49185","ville_num":"183"}
+,{"ville_code":"184","ville_lib":"ZIKISSO","ville_lib_long":"VILLE DE ZIKISSO                                    5 30114","ville_num":"184"}
+,{"ville_code":"186","ville_lib":"ZOUKOUGBEU","ville_lib_long":"VILLE DE ZOUKOUGBEU                                 7 17 66","ville_num":"186"}
+,{"ville_code":"14","ville_lib":"ARRAH","ville_lib_long":"VILLE D'ARRAH                                       1 11 36","ville_num":"14"}
+,{"ville_code":"16","ville_lib":"AYAME","ville_lib_long":"VILLE D'AYAME                                       5  3 16","ville_num":"16"}
+,{"ville_code":"18","ville_lib":"BAKO","ville_lib_long":"VILLE DE BAKO                                       9 34128","ville_num":"18"}
+,{"ville_code":"21","ville_lib":"BEDIALA","ville_lib_long":"VILLE DE BEDIALA                                    7 17 63","ville_num":"21"}
+,{"ville_code":"23","ville_lib":"BETTIE","ville_lib_long":"VILLE DE BETTIE                                     4  1  3","ville_num":"23"}
+,{"ville_code":"26","ville_lib":"BIN-HOUYE","ville_lib_long":"VILLE DE BIN-HOUYE                                  8 18 67","ville_num":"26"}
+,{"ville_code":"27","ville_lib":"BLOLEQUIN","ville_lib_long":"VILLE DE BLOLEQUIN                                  8 26 91","ville_num":"27"}
+,{"ville_code":"30","ville_lib":"BONDOUKOU","ville_lib_long":"VILLE DE BONDOUKOU                                  3 10 34","ville_num":"30"}
+,{"ville_code":"191","ville_lib":"PARIS"}
+,{"ville_code":"020","ville_lib":"YAMOUSSOUKRO","ville_lib_long":"VILLE DE YAMOUSSOUKRO"}
+,{"ville_code":"030","ville_lib":"GAGNOA"}
+,{"ville_code":"189","ville_lib":"ABIDJAN-PLATEAU"}
+,{"ville_code":"190","ville_lib":"ABIDJAN-YOPOUGON"}
+,{"ville_code":"32","ville_lib":"BONIEREDOUGOU","ville_lib_long":"VILLE DE BONIEREDOUGOU                              2 16 58","ville_num":"32"}
+,{"ville_code":"34","ville_lib":"BONOUA","ville_lib_long":"VILLE DE BONOUA                                     5  2  8","ville_num":"34"}
+,{"ville_code":"36","ville_lib":"BOROTOU","ville_lib_long":"VILLE DE BOROTOU                                    9 46172","ville_num":"36"}
+,{"ville_code":"39","ville_lib":"BOUAKE","ville_lib_long":"VILLE DE BOUAKE                                     2 13 44","ville_num":"39"}
+,{"ville_code":"41","ville_lib":"BOUBDIALI","ville_lib_long":"VILLE DE BOUNDIALI                                 10 15 52","ville_num":"41"}
+,{"ville_code":"43","ville_lib":"BUYO","ville_lib_long":"VILLE DE BUYO                                       6 41156","ville_num":"43"}
+,{"ville_code":"45","ville_lib":"DABOU","ville_lib_long":"VILLE DE DABOU                                      5  2  9","ville_num":"45"}
+,{"ville_code":"48","ville_lib":"DAOUKRO","ville_lib_long":"VILLE DE DAOUKRO                                    1 19 70","ville_num":"48"}
+,{"ville_code":"50","ville_lib":"DIANRA","ville_lib_long":"VILLE DE DIANRA                                     9 32120","ville_num":"50"}
+,{"ville_code":"52","ville_lib":"DIDIEVI","ville_lib_long":"VILLE DE DIDIEVI                                    1 49182","ville_num":"52"}
+,{"ville_code":"54","ville_lib":"DIKODOUGOU","ville_lib_long":"VILLE DE DIKODOUGOU                                10 29102","ville_num":"54"}
+,{"ville_code":"57","ville_lib":"DIVO","ville_lib_long":"VILLE DE DIVO                                       5 21 76","ville_num":"57"}
+,{"ville_code":"59","ville_lib":"DJEKANOU","ville_lib_long":"VILLE DE DJEKANOU                                   1 47180","ville_num":"59"}
+,{"ville_code":"61","ville_lib":"DOROPO","ville_lib_long":"VILLE DE DOROPO                                     3 14 49","ville_num":"61"}
+,{"ville_code":"63","ville_lib":"DUEKOUE","ville_lib_long":"VILLE DE DUEKOUE                                    8 22 80","ville_num":"63"}
+,{"ville_code":"66","ville_lib":"FERKESSEDOUGOU","ville_lib_long":"VILLE DE FERKESSEDOUGOU                            10 23 82","ville_num":"66"}
+,{"ville_code":"68","ville_lib":"FRESCO","ville_lib_long":"VILLE DE FRESCO                                     5 21 77","ville_num":"68"}
+,{"ville_code":"70","ville_lib":"GAGNOA","ville_lib_long":"VILLE DE GAGNOA                                     7 24 87","ville_num":"70"}
+,{"ville_code":"72","ville_lib":"GBON","ville_lib_long":"VILLE DE GBON                                      10 15 53","ville_num":"72"}
+,{"ville_code":"87","ville_lib":"HIRE","ville_lib_long":"VILLE DE HIRE                                       5 21 79","ville_num":"87"}
+,{"ville_code":"89","ville_lib":"JACQUEVILLE","ville_lib_long":"VILLE DE JACQUEVILLE                                5 21 11","ville_num":"89"}
+,{"ville_code":"91","ville_lib":"KANI","ville_lib_long":"VILLE DE KANI                                       9 39149","ville_num":"91"}
+,{"ville_code":"93","ville_lib":"KARAKORO","ville_lib_long":"VILLE DE KARAKORO                                  10 29104","ville_num":"93"}
+,{"ville_code":"96","ville_lib":"KOKOUMBO","ville_lib_long":"VILLE DE KOKOUMBO                                   1 47178","ville_num":"96"}
+,{"ville_code":"98","ville_lib":"KOMBORODOUGOU","ville_lib_long":"VILLE DE KOMBORODOUGOU                             10 29106","ville_num":"98"}
+,{"ville_code":"100","ville_lib":"KONGASSO","ville_lib_long":"VILLE DE KONGASSO                                   9 32121","ville_num":"100"}
+,{"ville_code":"103","ville_lib":"KORO","ville_lib_long":"VILLE DE KORO                                       9 46175","ville_num":"103"}
+,{"ville_code":"105","ville_lib":"KOUASSI-KOUASSIKRO","ville_lib_long":"VILLE DE KOUASSI-KOUASSIKRO                         1 20 75","ville_num":"105"}
+,{"ville_code":"107","ville_lib":"KOUMBALA","ville_lib_long":"VILLE DE KOUMBALA                                  10 23 84","ville_num":"107"}
+,{"ville_code":"108","ville_lib":"KOUNAHIRI","ville_lib_long":"VILLE DE KOUNAHIRI                                  9 32122","ville_num":"108"}
+,{"ville_code":"112","ville_lib":"LOGUOALE","ville_lib_long":"VILLE DE LOGOUALE                                   8 31117","ville_num":"112"}
+,{"ville_code":"121","ville_lib":"M'BAHIAKRO","ville_lib_long":"VILLE DE M'BAHIADRO                                 2 33126","ville_num":"121"}
+,{"ville_code":"123","ville_lib":"M'BENGUE","ville_lib_long":"VILLE DE M'BENGUE                                  10 29107","ville_num":"123"}
+,{"ville_code":"114","ville_lib":"MAFERE","ville_lib_long":"VILLE DE MAFERE                                     5  3 17","ville_num":"114"}
+,{"ville_code":"117","ville_lib":"MASSALA","ville_lib_long":"VILLE DE MASSALA                                    9 39150","ville_num":"117"}
+,{"ville_code":"119","ville_lib":"MINIGNAN","ville_lib_long":"VILLE DE MINIGNAN                                   9 34133","ville_num":"119"}
+,{"ville_code":"124","ville_lib":"NAPIEOLEDOUGOU","ville_lib_long":"VILLE DE NAPIEOLEDOUGOU                            10 29108","ville_num":"124"}
+,{"ville_code":"126","ville_lib":"NIABLE","ville_lib_long":"VILLE DE NIABLE                                     4  1  4","ville_num":"126"}
+,{"ville_code":"129","ville_lib":"NIOFOIN","ville_lib_long":"VILLE DE NIOFION                                   10 29109","ville_num":"129"}
+,{"ville_code":"131","ville_lib":"OUANGOLODOUGOU","ville_lib_long":"VILLE DE OUANGOLODOUGOU                            10 23 86","ville_num":"131"}
+,{"ville_code":"133","ville_lib":"OUELLE","ville_lib_long":"VILLE D'OUELLE                                      1 19 72","ville_num":"133"}
+,{"ville_code":"135","ville_lib":"OURAGAHIO","ville_lib_long":"VILLE DE OURAGAHIO                                  7 24 89","ville_num":"135"}
+,{"ville_code":"138","ville_lib":"SAIOUA","ville_lib_long":"VILLE DE SAIOUA                                     7 27 96","ville_num":"138"}
+,{"ville_code":"140","ville_lib":"SAMATIGUILA","ville_lib_long":"VILLE DE SAMATIGUILA                                9 34135","ville_num":"140"}
+,{"ville_code":"141","ville_lib":"SANDEGUE","ville_lib_long":"VILLE DE SANDEGUE                                   3 10 35","ville_num":"141"}
+,{"ville_code":"145","ville_lib":"SASSADRA","ville_lib_long":"VILLE DE SASSANDRA                                  6 38146","ville_num":"145"}
+,{"ville_code":"147","ville_lib":"SATAMA-SOKOURA","ville_lib_long":"VILLE DE SATAMA-SOKOURA                             2 16 62","ville_num":"147"}
+,{"ville_code":"160","ville_lib":"TABOU","ville_lib_long":"VILLE DE TABOU                                      6 42161","ville_num":"160"}
+,{"ville_code":"162","ville_lib":"TAI","ville_lib_long":"VILLE DE TAI                                        8 26 93","ville_num":"162"}
+,{"ville_code":"164","ville_lib":"TEHINI","ville_lib_long":"VILLE DE TEHINI                                     3 14 51","ville_num":"164"}
+,{"ville_code":"167","ville_lib":"TIASSALE","ville_lib_long":"VILLE DE TIASSALE                                   5 45170","ville_num":"167"}
+,{"ville_code":"168","ville_lib":"TIEBISSOU","ville_lib_long":"VILLE DE TIEBISSOU                                  1 49183","ville_num":"168"}
+,{"ville_code":"170","ville_lib":"TIEMELEKRO","ville_lib_long":"VILLE DE TIEMEKRO                                   1 11 39","ville_num":"170"}
+,{"ville_code":"172","ville_lib":"TIENKRO","ville_lib_long":"VILLE DE TIENKO                                     9 34139","ville_num":"172"}
+,{"ville_code":"176","ville_lib":"TOUBA","ville_lib_long":"VILLE DE TOUBA                                      9 46177","ville_num":"176"}
+,{"ville_code":"178","ville_lib":"TOUMODI","ville_lib_long":"VILLE DE TOUMODI                                    1 47179","ville_num":"178"}
+,{"ville_code":"180","ville_lib":"VAVOUA","ville_lib_long":"VILLE DE VAVOUA                                     7 48181","ville_num":"180"}
+,{"ville_code":"182","ville_lib":"YAKASSE-ATTOBROU","ville_lib_long":"VILLE DE YAKASSE-ATTOBROU                           5  4 23","ville_num":"182"}
+,{"ville_code":"185","ville_lib":"ZOUAN-HOUNIEN","ville_lib_long":"VILLE DE ZOUAN-HOUNIEN                              8 18 69","ville_num":"185"}
+,{"ville_code":"187","ville_lib":"ZUENOULA","ville_lib_long":"VILLE DE ZUENOULA                                   7 50187","ville_num":"187"}
+,{"ville_code":"2","ville_lib":"ABIDJAN","ville_lib_long":"VILLE D'ABIDJAN                                     5  2  1","ville_num":"2"}
+,{"ville_code":"1","ville_lib":"ABENGOUROU","ville_lib_long":"VILLE D'ABENGOUROU                                  4  1  2","ville_num":"1"}
+,{"ville_code":"3","ville_lib":"ABOISSO","ville_lib_long":"VILLE D'ABOISSO                                     5  3 14","ville_num":"3"}
+,{"ville_code":"4","ville_lib":"ADIAKE","ville_lib_long":"VILLE D'ADIAKE                                      5  3 15","ville_num":"4"}
+,{"ville_code":"5","ville_lib":"ADZOPE","ville_lib_long":"VILLE D'ADZOPE                                      5  4 19","ville_num":"5"}
+,{"ville_code":"6","ville_lib":"AFFERY","ville_lib_long":"VILLE D'AFFERY                                      5  4 20","ville_num":"6"}
+,{"ville_code":"7","ville_lib":"AGBOVILLE","ville_lib_long":"VILLE D'AGBOVILLE                                   5  5 24","ville_num":"7"}
+,{"ville_code":"8","ville_lib":"AGNIBILEKROU","ville_lib_long":"VILLE D'AGNIBILEKROU                                4  6 27","ville_num":"8"}
+]}]}
