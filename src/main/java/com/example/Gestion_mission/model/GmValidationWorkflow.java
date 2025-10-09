@@ -1,5 +1,6 @@
 package com.example.Gestion_mission.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -19,6 +20,7 @@ public class GmValidationWorkflow {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_ORDRE_MISSION")
+    @JsonIgnore
     private GmOrdreMission ordreMission;
 
     @ManyToOne(fetch = FetchType.LAZY)

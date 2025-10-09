@@ -2,6 +2,7 @@ package com.example.Gestion_mission.controller;
 
 import com.example.Gestion_mission.annotation.JournaliserAction;
 import com.example.Gestion_mission.annotation.RoleAutorise;
+import com.example.Gestion_mission.dto.MissionDetailDTO;
 import com.example.Gestion_mission.dto.OrdreMissionDTO;
 import com.example.Gestion_mission.model.GmOrdreMission;
 import com.example.Gestion_mission.service.GmOrdreMissionService;
@@ -10,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/missions")
@@ -29,9 +29,10 @@ public class GmOrdreMissionController {
 
     @GetMapping("/{id}")
     @JournaliserAction(entite = "GM_ORDRE_MISSION", action = "READ")
-    public ResponseEntity<Optional<GmOrdreMission>> getOrdreMissionById(@PathVariable Long id) {
-        Optional<GmOrdreMission> ordreMission = ordreMissionService.getOrdreMissionById(id);
-        return ResponseEntity.ok(ordreMission);
+    public ResponseEntity<MissionDetailDTO> getOrdreMissionById(@PathVariable Long id) {
+        return ordreMissionService.getMissionDetail(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping

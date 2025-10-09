@@ -1,9 +1,16 @@
 package com.example.Gestion_mission.service;
 
+import com.example.Gestion_mission.dto.MissionDetailDTO;
 import com.example.Gestion_mission.dto.OrdreMissionDTO;
+import com.example.Gestion_mission.mapper.MissionDetailMapper;
 import com.example.Gestion_mission.mapper.OrdreMissionMapper;
 import com.example.Gestion_mission.model.GmOrdreMission;
+import com.example.Gestion_mission.model.GmRemiseJustificatifs;
+import com.example.Gestion_mission.repository.GmMissionEtapeRepository;
+import com.example.Gestion_mission.repository.GmMissionRessourceRepository;
 import com.example.Gestion_mission.repository.GmOrdreMissionRepository;
+import com.example.Gestion_mission.repository.GmRemiseJustificatifsRepository;
+import com.example.Gestion_mission.repository.GmValidationWorkflowRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
@@ -28,6 +35,21 @@ public class GmOrdreMissionService {
 
     @Autowired
     private OrdreMissionMapper mapper;
+
+    @Autowired
+    private MissionDetailMapper missionDetailMapper;
+
+    @Autowired
+    private GmMissionRessourceRepository missionRessourceRepository;
+
+    @Autowired
+    private GmMissionEtapeRepository missionEtapeRepository;
+
+    @Autowired
+    private GmValidationWorkflowRepository validationWorkflowRepository;
+
+    @Autowired
+    private GmRemiseJustificatifsRepository remiseJustificatifsRepository;
 
     public List<OrdreMissionDTO> getAllOrdresMission() {
         // Enregistrer l'action de consultation
@@ -54,6 +76,25 @@ public class GmOrdreMissionService {
         );
         
         return ordreMissionRepository.findById(id);
+    }
+
+    public Optional<MissionDetailDTO> getMissionDetail(Long id) {
+        journalService.enregistrerActionConsultation(
+            roleService.getIdUtilisateurConnecte(),
+            "GM_ORDRE_MISSION",
+            "127.0.0.1",
+            "User-Agent"
+        );
+
+        return ordreMissionRepository.findById(id)
+                .map(mission -> {
+                    var ressources = missionRessourceRepository.findByOrdreMissionIdOrdreMission(id);
+                    var etapes = missionEtapeRepository.findByOrdreMissionIdOrdreMissionOrderByOrdrePassageAsc(id);
+                    var workflow = validationWorkflowRepository.findByOrdreMissionIdOrdreMissionOrderByOrdreValidationAsc(id);
+                    GmRemiseJustificatifs justificatifs = remiseJustificatifsRepository.findByOrdreMissionIdOrdreMission(id)
+                            .orElse(null);
+                    return missionDetailMapper.toDetailDTO(mission, ressources, etapes, workflow, justificatifs);
+                });
     }
 
     public GmOrdreMission createOrdreMission(GmOrdreMission ordreMission) {
