@@ -1,7 +1,10 @@
 package com.example.Gestion_mission.model;
 
 import jakarta.persistence.*;
+
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "GM_ORDRE_MISSION")
@@ -60,6 +63,15 @@ public class GmOrdreMission {
 
     @Column(name = "DELETED_AT")
     private Date deletedAt;
+
+    @OneToMany(mappedBy = "ordreMission", cascade = CascadeType.ALL, orphanRemoval = false)
+    private Set<GmMissionRessource> ressources = new HashSet<>();
+
+    @OneToMany(mappedBy = "ordreMission", cascade = CascadeType.ALL, orphanRemoval = false)
+    private Set<GmMissionEtape> etapes = new HashSet<>();
+
+    @OneToOne(mappedBy = "ordreMission", cascade = CascadeType.ALL, orphanRemoval = false)
+    private GmRemiseJustificatifs remiseJustificatifs;
 
     // Getters and Setters
 
@@ -197,6 +209,30 @@ public class GmOrdreMission {
 
     public void setDeletedAt(Date deletedAt) {
         this.deletedAt = deletedAt;
+    }
+
+    public Set<GmMissionRessource> getRessources() {
+        return ressources;
+    }
+
+    public void setRessources(Set<GmMissionRessource> ressources) {
+        this.ressources = ressources;
+    }
+
+    public Set<GmMissionEtape> getEtapes() {
+        return etapes;
+    }
+
+    public void setEtapes(Set<GmMissionEtape> etapes) {
+        this.etapes = etapes;
+    }
+
+    public GmRemiseJustificatifs getRemiseJustificatifs() {
+        return remiseJustificatifs;
+    }
+
+    public void setRemiseJustificatifs(GmRemiseJustificatifs remiseJustificatifs) {
+        this.remiseJustificatifs = remiseJustificatifs;
     }
 
     // Méthode désactivée temporairement pour éviter les cycles de dépendance

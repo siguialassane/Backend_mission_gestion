@@ -1,16 +1,21 @@
 package com.example.Gestion_mission.service;
 
-import com.example.Gestion_mission.model.GmAgent;
+import com.example.Gestion_mission.dto.OrdreMissionDTO;
+import com.example.Gestion_mission.mapper.OrdreMissionMapper;
 import com.example.Gestion_mission.model.GmOrdreMission;
 import com.example.Gestion_mission.repository.GmOrdreMissionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class GmOrdreMissionService {
+
+    private static final Logger logger = LoggerFactory.getLogger(GmOrdreMissionService.class);
 
     @Autowired
     private GmOrdreMissionRepository ordreMissionRepository;
@@ -21,7 +26,10 @@ public class GmOrdreMissionService {
     @Autowired
     private RoleService roleService;
 
-    public List<GmOrdreMission> getAllOrdresMission() {
+    @Autowired
+    private OrdreMissionMapper mapper;
+
+    public List<OrdreMissionDTO> getAllOrdresMission() {
         // Enregistrer l'action de consultation
         journalService.enregistrerActionConsultation(
             roleService.getIdUtilisateurConnecte(), 
@@ -29,8 +37,11 @@ public class GmOrdreMissionService {
             "127.0.0.1", // À remplacer par l'IP réelle
             "User-Agent" // À remplacer par le vrai user agent
         );
-        
-        return ordreMissionRepository.findAll();
+
+        Long utilisateurId = roleService.getIdUtilisateurConnecte();
+        List<GmOrdreMission> missions = ordreMissionRepository.findAll();
+        logger.info("Utilisateur {} récupère {} missions", utilisateurId, missions.size());
+        return mapper.toDTOList(missions);
     }
 
     public Optional<GmOrdreMission> getOrdreMissionById(Long id) {

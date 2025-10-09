@@ -22,6 +22,16 @@ public class GmFraisMission {
     @Column(name = "MONTANT_FRAIS")
     private Double montantFrais;
 
+    @Column(name = "STATUT_VALIDATION")
+    private String statutValidation;
+
+    @Column(name = "DATE_VALIDATION")
+    private Date dateValidation;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_AGENT_VALIDEUR")
+    private GmAgent agentValideur;
+
     @Column(name = "DATE_FRAIS")
     private Date dateFrais;
 
@@ -81,6 +91,30 @@ public class GmFraisMission {
 
     public void setMontantFrais(Double montantFrais) {
         this.montantFrais = montantFrais;
+    }
+
+    public String getStatutValidation() {
+        return statutValidation;
+    }
+
+    public void setStatutValidation(String statutValidation) {
+        this.statutValidation = statutValidation;
+    }
+
+    public Date getDateValidation() {
+        return dateValidation;
+    }
+
+    public void setDateValidation(Date dateValidation) {
+        this.dateValidation = dateValidation;
+    }
+
+    public GmAgent getAgentValideur() {
+        return agentValideur;
+    }
+
+    public void setAgentValideur(GmAgent agentValideur) {
+        this.agentValideur = agentValideur;
     }
 
     public Date getDateFrais() {

@@ -2,6 +2,7 @@ package com.example.Gestion_mission.controller;
 
 import com.example.Gestion_mission.annotation.JournaliserAction;
 import com.example.Gestion_mission.annotation.RoleAutorise;
+import com.example.Gestion_mission.dto.OrdreMissionDTO;
 import com.example.Gestion_mission.model.GmOrdreMission;
 import com.example.Gestion_mission.service.GmOrdreMissionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,8 @@ public class GmOrdreMissionController {
 
     @GetMapping
     @JournaliserAction(entite = "GM_ORDRE_MISSION", action = "READ")
-    public ResponseEntity<List<GmOrdreMission>> getAllOrdresMission() {
-        List<GmOrdreMission> ordresMission = ordreMissionService.getAllOrdresMission();
+    public ResponseEntity<List<OrdreMissionDTO>> getAllOrdresMission() {
+        List<OrdreMissionDTO> ordresMission = ordreMissionService.getAllOrdresMission();
         return ResponseEntity.ok(ordresMission);
     }
 
