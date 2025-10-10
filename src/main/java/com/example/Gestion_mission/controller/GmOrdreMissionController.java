@@ -2,6 +2,7 @@ package com.example.Gestion_mission.controller;
 
 import com.example.Gestion_mission.annotation.JournaliserAction;
 import com.example.Gestion_mission.annotation.RoleAutorise;
+import com.example.Gestion_mission.dto.MissionCreationRequest;
 import com.example.Gestion_mission.dto.MissionDetailDTO;
 import com.example.Gestion_mission.dto.OrdreMissionDTO;
 import com.example.Gestion_mission.model.GmOrdreMission;
@@ -38,8 +39,8 @@ public class GmOrdreMissionController {
     @PostMapping
     @RoleAutorise(roles = {"GESTIONNAIRE", "ADMIN"}, peutSupprimer = false, peutModifier = false)
     @JournaliserAction(entite = "GM_ORDRE_MISSION", action = "CREATE")
-    public ResponseEntity<GmOrdreMission> createOrdreMission(@RequestBody GmOrdreMission ordreMission) {
-        GmOrdreMission createdOrdreMission = ordreMissionService.createOrdreMission(ordreMission);
+    public ResponseEntity<GmOrdreMission> createOrdreMission(@RequestBody MissionCreationRequest request) {
+        GmOrdreMission createdOrdreMission = ordreMissionService.createOrdreMission(request);
         return ResponseEntity.ok(createdOrdreMission);
     }
 

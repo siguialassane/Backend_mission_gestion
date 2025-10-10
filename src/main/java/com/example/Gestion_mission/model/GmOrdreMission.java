@@ -1,5 +1,6 @@
 package com.example.Gestion_mission.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -72,6 +73,10 @@ public class GmOrdreMission {
 
     @OneToOne(mappedBy = "ordreMission", cascade = CascadeType.ALL, orphanRemoval = false)
     private GmRemiseJustificatifs remiseJustificatifs;
+
+    @OneToMany(mappedBy = "ordreMission", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private Set<GmMissionAgent> participants = new HashSet<>();
 
     // Getters and Setters
 
@@ -233,6 +238,14 @@ public class GmOrdreMission {
 
     public void setRemiseJustificatifs(GmRemiseJustificatifs remiseJustificatifs) {
         this.remiseJustificatifs = remiseJustificatifs;
+    }
+
+    public Set<GmMissionAgent> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(Set<GmMissionAgent> participants) {
+        this.participants = participants;
     }
 
     // Méthode désactivée temporairement pour éviter les cycles de dépendance

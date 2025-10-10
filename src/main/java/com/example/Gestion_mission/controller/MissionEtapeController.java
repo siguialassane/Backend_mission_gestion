@@ -2,6 +2,7 @@ package com.example.Gestion_mission.controller;
 
 import com.example.Gestion_mission.annotation.JournaliserAction;
 import com.example.Gestion_mission.annotation.RoleAutorise;
+import com.example.Gestion_mission.dto.MissionEtapeDTO;
 import com.example.Gestion_mission.model.GmItineraire;
 import com.example.Gestion_mission.model.GmMissionEtape;
 import com.example.Gestion_mission.service.MissionEtapeService;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/missions/{missionId}/etapes")
@@ -28,15 +30,18 @@ public class MissionEtapeController {
 
     @GetMapping
     @JournaliserAction(entite = "GM_MISSION_ETAPE", action = "READ")
-    public ResponseEntity<List<GmMissionEtape>> lister(@PathVariable Long missionId) {
+    public ResponseEntity<List<MissionEtapeDTO>> lister(@PathVariable Long missionId) {
         log.debug("API - Consultation des étapes pour la mission {}", missionId);
-        return ResponseEntity.ok(missionEtapeService.listerEtapes(missionId));
+        List<MissionEtapeDTO> etapes = missionEtapeService.listerEtapes(missionId).stream()
+                .map(this::mapEtape)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(etapes);
     }
 
     @PostMapping
     @RoleAutorise(roles = {"GESTIONNAIRE", "ADMIN"}, peutModifier = true)
     @JournaliserAction(entite = "GM_MISSION_ETAPE", action = "CREATE")
-    public ResponseEntity<GmMissionEtape> ajouter(@PathVariable Long missionId,
+    public ResponseEntity<MissionEtapeDTO> ajouter(@PathVariable Long missionId,
                                                  @RequestBody MissionEtapeRequest request) {
         log.info("API - Ajout de l'étape {} pour la mission {}", request.ordrePassage(), missionId);
         GmMissionEtape etape = new GmMissionEtape();
@@ -55,7 +60,7 @@ public class MissionEtapeController {
             etape.setItineraire(itineraire);
         }
 
-        return ResponseEntity.ok(missionEtapeService.ajouterEtape(missionId, etape));
+        return ResponseEntity.ok(mapEtape(missionEtapeService.ajouterEtape(missionId, etape)));
     }
 
     @DeleteMapping("/{etapeId}")
@@ -76,5 +81,19 @@ public class MissionEtapeController {
                                       String modeTransport,
                                       String hebergementPrevu,
                                       String commentaireEtape) {
+    }
+
+    private MissionEtapeDTO mapEtape(GmMissionEtape entity) {
+        MissionEtapeDTO dto = new MissionEtapeDTO();
+        dto.setIdMissionEtape(entity.getIdMissionEtape());
+        dto.setOrdrePassage(entity.getOrdrePassage());
+        dto.setVilleDepartCode(entity.getVilleDepartCode());
+        dto.setVilleArriveCode(entity.getVilleArriveCode());
+        dto.setDateDepart(entity.getDateDepart());
+        dto.setDateArrivee(entity.getDateArrivee());
+        dto.setModeTransport(entity.getModeTransport());
+        dto.setHebergementPrevu(entity.getHebergementPrevu());
+        dto.setCommentaireEtape(entity.getCommentaireEtape());
+        return dto;
     }
 }

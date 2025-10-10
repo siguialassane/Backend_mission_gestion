@@ -1,16 +1,18 @@
 package com.example.Gestion_mission.controller;
 
+import com.example.Gestion_mission.dto.LoginResponse;
 import com.example.Gestion_mission.model.GmAgent;
 import com.example.Gestion_mission.model.GmRole;
-import com.example.Gestion_mission.payload.JwtResponse;
 import com.example.Gestion_mission.payload.LoginRequest;
 import com.example.Gestion_mission.payload.MessageResponse;
 import com.example.Gestion_mission.payload.SignupRequest;
 import com.example.Gestion_mission.repository.GmAgentRepository;
 import com.example.Gestion_mission.repository.GmRoleRepository;
-import com.example.Gestion_mission.security.JwtUtils;
 import com.example.Gestion_mission.security.UserDetailsImpl;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,10 +25,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -48,11 +47,8 @@ public class AuthController {
     @Autowired
     PasswordEncoder encoder;
 
-    @Autowired
-    JwtUtils jwtUtils;
-
     @PostMapping("/login")
-    public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest, HttpServletRequest request) {
         logger.info("Tentative de connexion pour l'email: {}", loginRequest.getEmail());
         try {
             Authentication authentication = authenticationManager.authenticate(
@@ -60,24 +56,40 @@ public class AuthController {
             );
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            String jwt = jwtUtils.generateJwtToken(authentication);
+
+            // IMPORTANT : Sauvegarder explicitement le SecurityContext dans la session HTTP
+            HttpSession session = request.getSession(true);
+            HttpSessionSecurityContextRepository repo = new HttpSessionSecurityContextRepository();
+            repo.saveContext(SecurityContextHolder.getContext(), request, null);
 
             UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
             List<String> roles = userDetails.getAuthorities().stream()
                     .map(item -> item.getAuthority())
                     .collect(Collectors.toList());
 
-            logger.info("Authentification réussie pour l'utilisateur ID {}", userDetails.getId());
+            logger.info("✅ Authentification réussie - User ID: {} - Session ID: {} - Roles: {}", 
+                userDetails.getId(), session.getId(), roles);
 
-            return ResponseEntity.ok(new JwtResponse(jwt,
+            return ResponseEntity.ok(new LoginResponse(
                     userDetails.getId(),
                     userDetails.getEmail(),
                     roles));
         } catch (AuthenticationException ex) {
             logger.warn("Echec d'authentification pour {} : {}", loginRequest.getEmail(), ex.getMessage());
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body(new MessageResponse("Email ou mot de passe incorrect."));
+                    .body(Map.of("message", "Email ou mot de passe incorrect"));
         }
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logoutUser(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            logger.info("Déconnexion - Invalidation de la session: {}", session.getId());
+            session.invalidate();
+        }
+        SecurityContextHolder.clearContext();
+        return ResponseEntity.ok(Map.of("message", "Déconnexion réussie"));
     }
 
     @PostMapping("/signup")

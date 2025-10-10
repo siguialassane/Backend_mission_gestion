@@ -1,5 +1,6 @@
 package com.example.Gestion_mission.service;
 
+import com.example.Gestion_mission.dto.MissionCreationRequest;
 import com.example.Gestion_mission.dto.MissionDetailDTO;
 import com.example.Gestion_mission.dto.OrdreMissionDTO;
 import com.example.Gestion_mission.mapper.MissionDetailMapper;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,6 +52,9 @@ public class GmOrdreMissionService {
 
     @Autowired
     private GmRemiseJustificatifsRepository remiseJustificatifsRepository;
+
+    @Autowired
+    private MissionAgentService missionAgentService;
 
     public List<OrdreMissionDTO> getAllOrdresMission() {
         // Enregistrer l'action de consultation
@@ -97,20 +102,53 @@ public class GmOrdreMissionService {
                 });
     }
 
-    public GmOrdreMission createOrdreMission(GmOrdreMission ordreMission) {
-        // Enregistrer l'action de création
+    public GmOrdreMission createOrdreMission(MissionCreationRequest request) {
+        if (request.getDateDebutMission() == null || request.getDateFinMission() == null) {
+            throw new IllegalArgumentException("Les dates de début et fin sont obligatoires");
+        }
+        if (request.getDateFinMission().before(request.getDateDebutMission())) {
+            throw new IllegalArgumentException("La date de fin doit être postérieure à la date de début");
+        }
+
+        GmOrdreMission mission = new GmOrdreMission();
+        mission.setObjetMission(request.getObjetMission());
+        mission.setDateDebutMission(request.getDateDebutMission());
+        mission.setDateFinMission(request.getDateFinMission());
+        mission.setLieuDepart(request.getLieuDepart());
+        mission.setLieuDestination(request.getLieuDestination());
+        mission.setMotifMission(request.getMotifMission());
+        mission.setStatutMission("BROUILLON");
+        mission.setDateCreation(new Date());
+        mission.setDateMiseAJour(new Date());
+        mission.setCreatedBy(roleService.getRoleUtilisateur());
+        mission.setIdAgentCreateur(roleService.getIdUtilisateurConnecte());
+
         journalService.enregistrerActionCreation(
-            roleService.getIdUtilisateurConnecte(), 
-            "GM_ORDRE_MISSION", 
-            "Code: " + ordreMission.getCodeMission() + ", Objet: " + ordreMission.getObjetMission(), 
-            "127.0.0.1", 
+            roleService.getIdUtilisateurConnecte(),
+            "GM_ORDRE_MISSION",
+            "Objet: " + mission.getObjetMission(),
+            "127.0.0.1",
             "User-Agent"
         );
-        
-        // Définir des valeurs par défaut si nécessaire
-        ordreMission.setStatutMission("BROUILLON"); // Statut initial
-        
-        return ordreMissionRepository.save(ordreMission);
+
+        GmOrdreMission saved = ordreMissionRepository.save(mission);
+
+        if (saved.getCodeMission() == null || saved.getCodeMission().isBlank()) {
+            saved.setCodeMission(genererCodeMission(saved.getIdOrdreMission()));
+            saved = ordreMissionRepository.save(saved);
+        }
+
+        if (request.getParticipants() != null) {
+            Long missionId = saved.getIdOrdreMission();
+            request.getParticipants().forEach(participant ->
+                    missionAgentService.ajouterParticipant(
+                            missionId,
+                            participant.getAgentId(),
+                            participant.getRoleMission())
+            );
+        }
+
+        return saved;
     }
 
     public GmOrdreMission updateOrdreMission(Long id, GmOrdreMission ordreMissionDetails) {
@@ -162,5 +200,9 @@ public class GmOrdreMissionService {
             
             ordreMissionRepository.deleteById(id);
         }
+    }
+
+    private String genererCodeMission(Long idOrdreMission) {
+        return String.format("MIS-%05d", idOrdreMission);
     }
 }
