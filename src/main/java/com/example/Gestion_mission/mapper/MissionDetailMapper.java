@@ -22,13 +22,19 @@ public class MissionDetailMapper {
                                         List<GmMissionRessource> ressources,
                                         List<GmMissionEtape> etapes,
                                         List<GmValidationWorkflow> workflows,
-                                        GmRemiseJustificatifs justificatifs) {
+                                        GmRemiseJustificatifs justificatifs,
+                                        GmBudgetMission budget,
+                                        List<GmMissionNotification> notifications,
+                                        List<GmMissionAgent> participants) {
         MissionDetailDTO dto = new MissionDetailDTO();
         dto.setMission(ordreMissionMapper.toDTO(mission));
         dto.setRessources(mapRessources(ressources));
         dto.setEtapes(mapEtapes(etapes));
         dto.setWorkflow(mapWorkflow(workflows));
         dto.setJustificatifs(mapJustificatifs(justificatifs));
+        dto.setBudget(mapBudget(budget));
+        dto.setNotifications(mapNotifications(notifications));
+        dto.setParticipants(mapParticipants(participants));
         return dto;
     }
 
@@ -136,6 +142,79 @@ public class MissionDetailMapper {
             agentDTO.setNomAgent(agent.getNomAgent());
             agentDTO.setPrenomAgent(agent.getPrenomAgent());
             dto.setAgentRecepteur(agentDTO);
+        }
+
+        return dto;
+    }
+
+    private BudgetMissionDTO mapBudget(GmBudgetMission budget) {
+        if (budget == null) {
+            return null;
+        }
+
+        BudgetMissionDTO dto = new BudgetMissionDTO();
+        dto.setIdBudget(budget.getIdBudget());
+        dto.setMontantHebergement(budget.getMontantHebergement());
+        dto.setMontantRestauration(budget.getMontantRestauration());
+        dto.setMontantTransport(budget.getMontantTransport());
+        dto.setMontantCarburant(budget.getMontantCarburant());
+        dto.setMontantDivers(budget.getMontantDivers());
+        dto.setMontantTotal(budget.getMontantTotal());
+        dto.setCommentaire(budget.getCommentaire());
+        dto.setCreatedAt(budget.getCreatedAt());
+        dto.setCreatedBy(budget.getCreatedBy());
+        dto.setUpdatedAt(budget.getUpdatedAt());
+        dto.setUpdatedBy(budget.getUpdatedBy());
+        return dto;
+    }
+
+    private List<MissionNotificationDTO> mapNotifications(List<GmMissionNotification> notifications) {
+        if (notifications == null) {
+            return Collections.emptyList();
+        }
+
+        return notifications.stream()
+                .filter(Objects::nonNull)
+                .map(this::mapNotification)
+                .collect(Collectors.toList());
+    }
+
+    private MissionNotificationDTO mapNotification(GmMissionNotification entity) {
+        MissionNotificationDTO dto = new MissionNotificationDTO();
+        dto.setIdNotification(entity.getIdNotification());
+        dto.setOrdreMissionId(entity.getOrdreMission() != null ? entity.getOrdreMission().getIdOrdreMission() : null);
+        dto.setDestinataireAgentId(entity.getDestinataireAgent() != null ? entity.getDestinataireAgent().getIdAgent() : null);
+        dto.setDestinataireRole(entity.getDestinataireRole());
+        dto.setTypeNotification(entity.getTypeNotification());
+        dto.setMessageNotification(entity.getMessageNotification());
+        dto.setStatutNotification(entity.getStatutNotification());
+        dto.setCreatedAt(entity.getCreatedAt());
+        dto.setLectureAt(entity.getLectureAt());
+        return dto;
+    }
+
+    private List<MissionParticipantDTO> mapParticipants(List<GmMissionAgent> participants) {
+        if (participants == null) {
+            return Collections.emptyList();
+        }
+
+        return participants.stream()
+                .filter(Objects::nonNull)
+                .map(this::mapParticipant)
+                .collect(Collectors.toList());
+    }
+
+    private MissionParticipantDTO mapParticipant(GmMissionAgent entity) {
+        MissionParticipantDTO dto = new MissionParticipantDTO();
+        dto.setIdMissionAgent(entity.getIdMissionAgent());
+        dto.setRoleMission(entity.getRoleMission());
+
+        GmAgent agent = entity.getAgent();
+        if (agent != null) {
+            dto.setAgentId(agent.getIdAgent());
+            dto.setMatricule(agent.getMatriculeAgent());
+            dto.setNom(agent.getNomAgent());
+            dto.setPrenom(agent.getPrenomAgent());
         }
 
         return dto;

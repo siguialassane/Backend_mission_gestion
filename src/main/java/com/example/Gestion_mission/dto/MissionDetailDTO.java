@@ -12,6 +12,9 @@ public class MissionDetailDTO {
     private List<MissionEtapeDTO> etapes;
     private List<ValidationWorkflowDTO> workflow;
     private RemiseJustificatifsDTO justificatifs;
+    private BudgetMissionDTO budget;
+    private List<MissionNotificationDTO> notifications;
+    private List<MissionParticipantDTO> participants;
 
     public OrdreMissionDTO getMission() {
         return mission;
@@ -51,5 +54,29 @@ public class MissionDetailDTO {
 
     public void setJustificatifs(RemiseJustificatifsDTO justificatifs) {
         this.justificatifs = justificatifs;
+    }
+
+    public BudgetMissionDTO getBudget() {
+        return budget;
+    }
+
+    public void setBudget(BudgetMissionDTO budget) {
+        this.budget = budget;
+    }
+
+    public List<MissionNotificationDTO> getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(List<MissionNotificationDTO> notifications) {
+        this.notifications = notifications;
+    }
+
+    public List<MissionParticipantDTO> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(List<MissionParticipantDTO> participants) {
+        this.participants = participants;
     }
 }
