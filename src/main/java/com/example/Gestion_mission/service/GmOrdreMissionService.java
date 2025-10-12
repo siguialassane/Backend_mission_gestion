@@ -191,7 +191,8 @@ public class GmOrdreMissionService {
                     GmBudgetMission budget = budgetMissionRepository.findByOrdreMissionIdOrdreMission(id)
                             .orElse(null);
                     var notifications = missionNotificationRepository.findByOrdreMissionIdOrdreMission(id);
-                    return missionDetailMapper.toDetailDTO(mission, ressources, etapes, workflow, justificatifs, budget, notifications);
+                    var participants = missionAgentRepository.findByOrdreMissionIdOrdreMission(id);
+                    return missionDetailMapper.toDetailDTO(mission, ressources, etapes, workflow, justificatifs, budget, notifications, participants);
                 });
     }
 
