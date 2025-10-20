@@ -48,6 +48,9 @@ public class GmAgent {
     @Column(name = "ENTITE_CODE")
     private String entiteCode;
 
+    @Column(name = "ID_UTILISATEUR_CREATEUR")
+    private Long idUtilisateurCreateur;
+
     @Column(name = "MOT_DE_PASSE")
     private String motDePasse;
 
@@ -171,6 +174,14 @@ public class GmAgent {
 
     public void setEntiteCode(String entiteCode) {
         this.entiteCode = entiteCode;
+    }
+
+    public Long getIdUtilisateurCreateur() {
+        return idUtilisateurCreateur;
+    }
+
+    public void setIdUtilisateurCreateur(Long idUtilisateurCreateur) {
+        this.idUtilisateurCreateur = idUtilisateurCreateur;
     }
 
     public String getMotDePasse() {

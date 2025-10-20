@@ -1,7 +1,7 @@
 package com.example.Gestion_mission.service;
 
-import com.example.Gestion_mission.model.AcVille;
-import com.example.Gestion_mission.repository.AcVilleRepository;
+import com.example.Gestion_mission.model.AcEntite;
+import com.example.Gestion_mission.repository.AcEntiteRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -12,27 +12,27 @@ import java.util.Collections;
 import java.util.List;
 
 @Service
-public class VilleService {
+public class EntiteService {
 
-    private final AcVilleRepository villeRepository;
+    private final AcEntiteRepository entiteRepository;
 
-    public VilleService(AcVilleRepository villeRepository) {
-        this.villeRepository = villeRepository;
+    public EntiteService(AcEntiteRepository entiteRepository) {
+        this.entiteRepository = entiteRepository;
     }
 
-    public Page<AcVille> rechercher(String query, int page, int size) {
+    public Page<AcEntite> rechercher(String query, int page, int size) {
         int pageIndex = Math.max(page, 0);
-        int pageSize = Math.min(Math.max(size, 1), 300);  // Augmenté à 300 pour afficher toutes les villes
+        int pageSize = Math.min(Math.max(size, 1), 100);
 
-        List<AcVille> source;
+        List<AcEntite> source;
         if (query == null || query.isBlank()) {
-            source = villeRepository.findAll(Sort.by("libelle"));
+            source = entiteRepository.findAll(Sort.by("libelle"));
         } else {
             String like = query.trim().toLowerCase();
-            source = villeRepository.findAll().stream()
-                    .filter(ville -> {
-                        String libelle = ville.getLibelle() != null ? ville.getLibelle().toLowerCase() : "";
-                        String libelleLong = ville.getLibelleLong() != null ? ville.getLibelleLong().toLowerCase() : "";
+            source = entiteRepository.findAll().stream()
+                    .filter(entite -> {
+                        String libelle = entite.getLibelle() != null ? entite.getLibelle().toLowerCase() : "";
+                        String libelleLong = entite.getLibelleLong() != null ? entite.getLibelleLong().toLowerCase() : "";
                         return libelle.contains(like) || libelleLong.contains(like);
                     })
                     .sorted((a, b) -> {
@@ -49,7 +49,7 @@ public class VilleService {
 
         int fromIndex = Math.min(pageIndex * pageSize, source.size());
         int toIndex = Math.min(fromIndex + pageSize, source.size());
-        List<AcVille> content = source.subList(fromIndex, toIndex);
+        List<AcEntite> content = source.subList(fromIndex, toIndex);
 
         return new PageImpl<>(content, PageRequest.of(pageIndex, pageSize, Sort.by("libelle")), source.size());
     }

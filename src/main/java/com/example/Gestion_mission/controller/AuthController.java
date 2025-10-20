@@ -3,11 +3,13 @@ package com.example.Gestion_mission.controller;
 import com.example.Gestion_mission.dto.LoginResponse;
 import com.example.Gestion_mission.model.GmAgent;
 import com.example.Gestion_mission.model.GmRole;
+import com.example.Gestion_mission.model.UtilisateurService;
 import com.example.Gestion_mission.payload.LoginRequest;
 import com.example.Gestion_mission.payload.MessageResponse;
 import com.example.Gestion_mission.payload.SignupRequest;
 import com.example.Gestion_mission.repository.GmAgentRepository;
 import com.example.Gestion_mission.repository.GmRoleRepository;
+import com.example.Gestion_mission.repository.UtilisateurServiceRepository;
 import com.example.Gestion_mission.security.UserDetailsImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -47,37 +49,98 @@ public class AuthController {
     @Autowired
     PasswordEncoder encoder;
 
+    @Autowired
+    UtilisateurServiceRepository utilisateurServiceRepository;
+
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest, HttpServletRequest request) {
-        logger.info("Tentative de connexion pour l'email: {}", loginRequest.getEmail());
+        logger.info("🔐 [LOGIN] Tentative de connexion - Identifiant: {}", loginRequest.getIdentifiantLogin());
+        
         try {
+            // Validation input
+            if (loginRequest.getIdentifiantLogin() == null || loginRequest.getIdentifiantLogin().isBlank()) {
+                logger.error("❌ [LOGIN] Identifiant vide!");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                        .body(Map.of("message", "Identifiant requis"));
+            }
+
+            if (loginRequest.getPassword() == null || loginRequest.getPassword().isBlank()) {
+                logger.error("❌ [LOGIN] Mot de passe vide!");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                        .body(Map.of("message", "Mot de passe requis"));
+            }
+
+            logger.debug("[LOGIN] Authentification avec identifiant: {}", loginRequest.getIdentifiantLogin());
+            
+            // Authentifier avec IDENTIFIANT_LOGIN
             Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword())
+                    new UsernamePasswordAuthenticationToken(
+                        loginRequest.getIdentifiantLogin(), 
+                        loginRequest.getPassword()
+                    )
             );
 
+            logger.debug("[LOGIN] Authentification réussie");
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
             // IMPORTANT : Sauvegarder explicitement le SecurityContext dans la session HTTP
             HttpSession session = request.getSession(true);
             HttpSessionSecurityContextRepository repo = new HttpSessionSecurityContextRepository();
             repo.saveContext(SecurityContextHolder.getContext(), request, null);
+            logger.debug("[LOGIN] Session sauvegardée - ID: {}", session.getId());
 
             UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-            List<String> roles = userDetails.getAuthorities().stream()
+            List<String> rolesList = userDetails.getAuthorities().stream()
                     .map(item -> item.getAuthority())
                     .collect(Collectors.toList());
 
-            logger.info("✅ Authentification réussie - User ID: {} - Session ID: {} - Roles: {}", 
-                userDetails.getId(), session.getId(), roles);
+            logger.debug("[LOGIN] Rôles chargés: {} (nombre: {})", rolesList, rolesList.size());
 
-            return ResponseEntity.ok(new LoginResponse(
+            // Validation: 1 rôle unique
+            if (rolesList.size() != 1) {
+                logger.error("❌ [LOGIN] Utilisateur {} a {} rôles au lieu de 1!", 
+                    userDetails.getId(), rolesList.size());
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                        .body(Map.of("message", "Configuration utilisateur invalide"));
+            }
+
+            String roleUnique = rolesList.get(0);
+            logger.info("✅ [LOGIN] Authentification réussie - User ID: {} - Rôle: {} - Session: {}", 
+                userDetails.getId(), roleUnique, session.getId());
+
+            // Récupérer nom et prenom depuis UtilisateurService
+            UtilisateurService utilisateur = utilisateurServiceRepository.findById((long) userDetails.getId())
+                    .orElse(null);
+            
+            String nom = null;
+            String prenom = null;
+            if (utilisateur != null) {
+                nom = utilisateur.getNomUtilisateur();
+                prenom = utilisateur.getPrenomUtilisateur();
+                logger.debug("[LOGIN] Données utilisateur récupérées - Nom: {}, Prenom: {}", nom, prenom);
+            }
+
+            // Retourner réponse avec RÔLE UNIQUE (pas roles[])
+            LoginResponse response = new LoginResponse(
                     userDetails.getId(),
                     userDetails.getEmail(),
-                    roles));
+                    roleUnique,  // ✅ Rôle unique au lieu de List<String>
+                    nom,
+                    prenom
+            );
+            
+            logger.debug("[LOGIN] Réponse renvoyée avec succès");
+            return ResponseEntity.ok(response);
+            
         } catch (AuthenticationException ex) {
-            logger.warn("Echec d'authentification pour {} : {}", loginRequest.getEmail(), ex.getMessage());
+            logger.warn("⚠️ [LOGIN] Echec d'authentification - Identifiant: {} - Erreur: {}", 
+                loginRequest.getIdentifiantLogin(), ex.getMessage());
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body(Map.of("message", "Email ou mot de passe incorrect"));
+                    .body(Map.of("message", "Identifiant ou mot de passe incorrect"));
+        } catch (Exception ex) {
+            logger.error("❌ [LOGIN] Exception inattendue: ", ex);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("message", "Erreur système lors de l'authentification"));
         }
     }
 

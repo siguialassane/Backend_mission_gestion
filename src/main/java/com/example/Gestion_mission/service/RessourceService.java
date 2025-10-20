@@ -17,6 +17,12 @@ public class RessourceService {
     }
 
     public List<GmRessource> listerDisponibles() {
-        return ressourceRepository.findAll(Sort.by("libelleRessource").ascending());
+        List<GmRessource> ressources = ressourceRepository.findAll(Sort.by("idRessource"));
+        ressources.sort((a, b) -> {
+            String libA = a.getLibelleRessource() != null ? a.getLibelleRessource() : "";
+            String libB = b.getLibelleRessource() != null ? b.getLibelleRessource() : "";
+            return libA.compareToIgnoreCase(libB);
+        });
+        return ressources;
     }
 }

@@ -33,8 +33,20 @@ public class OrdreMissionMapper {
             entity.getFraisEstime(),
             entity.getIdAgentCreateur(),
             entity.getStatutMission(),
+            entity.getWorkflowPhase(),
+            entity.getWorkflowStatut(),
+            entity.getMotifRefusGlobal(),
+            entity.getPdfChefUri(),
+            entity.getPdfRhUri(),
+            entity.getPdfFinalUri(),
             entity.getDateCreation(),
-            entity.getDateMiseAJour()
+            entity.getDateMiseAJour(),
+            entity.getEntiteCode(),
+            entity.getSignatureFondeRecue() != null && entity.getSignatureFondeRecue() == 1,
+            entity.getSignatureAgentComptableRecue() != null && entity.getSignatureAgentComptableRecue() == 1,
+            entity.getDateValidationRh(),
+            entity.getDateValidationMg(),
+            entity.getDateValidationCaisse()
         );
     }
 
@@ -71,8 +83,24 @@ public class OrdreMissionMapper {
         entity.setFraisEstime(dto.getFraisEstime());
         entity.setIdAgentCreateur(dto.getIdAgentCreateur());
         entity.setStatutMission(dto.getStatutMission());
+        entity.setWorkflowPhase(dto.getWorkflowPhase());
+        entity.setWorkflowStatut(dto.getWorkflowStatut());
+        entity.setMotifRefusGlobal(dto.getMotifRefusGlobal());
+        entity.setPdfChefUri(dto.getPdfChefUri());
+        entity.setPdfRhUri(dto.getPdfRhUri());
+        entity.setPdfFinalUri(dto.getPdfFinalUri());
         entity.setDateCreation(dto.getDateCreation());
         entity.setDateMiseAJour(dto.getDateMiseAJour());
+        entity.setEntiteCode(dto.getEntiteCode());
+        entity.setDateValidationRh(dto.getDateValidationRh());
+        entity.setDateValidationMg(dto.getDateValidationMg());
+        entity.setDateValidationCaisse(dto.getDateValidationCaisse());
+        if (dto.getSignatureFondeRecue() != null) {
+            entity.setSignatureFondeRecue(dto.getSignatureFondeRecue() ? 1 : 0);
+        }
+        if (dto.getSignatureAgentComptableRecue() != null) {
+            entity.setSignatureAgentComptableRecue(dto.getSignatureAgentComptableRecue() ? 1 : 0);
+        }
 
         return entity;
     }

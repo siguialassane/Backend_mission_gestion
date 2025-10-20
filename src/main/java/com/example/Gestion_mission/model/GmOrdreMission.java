@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
@@ -44,8 +45,38 @@ public class GmOrdreMission {
     @Column(name = "ID_AGENT_CREATEUR")
     private Long idAgentCreateur;
 
+    @Column(name = "ENTITE_CODE")
+    private String entiteCode;
+
     @Column(name = "STATUT_MISSION")
     private String statutMission;
+
+    @Column(name = "WORKFLOW_PHASE")
+    private String workflowPhase;
+
+    @Column(name = "WORKFLOW_STATUT")
+    private String workflowStatut;
+
+    @Column(name = "MOTIF_REFUS_GLOBAL")
+    private String motifRefusGlobal;
+
+    @Column(name = "PDF_CHEF_URI")
+    private String pdfChefUri;
+
+    @Column(name = "PDF_RH_URI")
+    private String pdfRhUri;
+
+    @Column(name = "PDF_FINAL_URI")
+    private String pdfFinalUri;
+
+    @Column(name = "DATE_VALIDATION_RH")
+    private Date dateValidationRh;
+
+    @Column(name = "DATE_VALIDATION_MG")
+    private Date dateValidationMg;
+
+    @Column(name = "DATE_VALIDATION_CAISSE")
+    private Date dateValidationCaisse;
 
     @Column(name = "DATE_CREATION")
     private Date dateCreation;
@@ -65,6 +96,24 @@ public class GmOrdreMission {
     @Column(name = "DELETED_AT")
     private Date deletedAt;
 
+    @Column(name = "SIG_FONDE_RECUE")
+    private Integer signatureFondeRecue;
+
+    @Column(name = "SIG_AGENTCPT_RECUE")
+    private Integer signatureAgentComptableRecue;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_AGENT_VALID_RH")
+    private GmAgent agentValidateurRh;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_AGENT_VALID_MG")
+    private GmAgent agentValidateurMg;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_AGENT_VALID_CAISSE")
+    private GmAgent agentValidateurCaisse;
+
     @OneToMany(mappedBy = "ordreMission", cascade = CascadeType.ALL, orphanRemoval = false)
     private Set<GmMissionRessource> ressources = new HashSet<>();
 
@@ -77,6 +126,14 @@ public class GmOrdreMission {
     @OneToMany(mappedBy = "ordreMission", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private Set<GmMissionAgent> participants = new HashSet<>();
+
+    @OneToOne(mappedBy = "ordreMission", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private GmBudgetMission budget;
+
+    @OneToMany(mappedBy = "ordreMission", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private Set<GmMissionNotification> notifications = new LinkedHashSet<>();
 
     // Getters and Setters
 
@@ -160,12 +217,92 @@ public class GmOrdreMission {
         this.idAgentCreateur = idAgentCreateur;
     }
 
+    public String getEntiteCode() {
+        return entiteCode;
+    }
+
+    public void setEntiteCode(String entiteCode) {
+        this.entiteCode = entiteCode;
+    }
+
     public String getStatutMission() {
         return statutMission;
     }
 
     public void setStatutMission(String statutMission) {
         this.statutMission = statutMission;
+    }
+
+    public String getWorkflowPhase() {
+        return workflowPhase;
+    }
+
+    public void setWorkflowPhase(String workflowPhase) {
+        this.workflowPhase = workflowPhase;
+    }
+
+    public String getWorkflowStatut() {
+        return workflowStatut;
+    }
+
+    public void setWorkflowStatut(String workflowStatut) {
+        this.workflowStatut = workflowStatut;
+    }
+
+    public String getMotifRefusGlobal() {
+        return motifRefusGlobal;
+    }
+
+    public void setMotifRefusGlobal(String motifRefusGlobal) {
+        this.motifRefusGlobal = motifRefusGlobal;
+    }
+
+    public String getPdfChefUri() {
+        return pdfChefUri;
+    }
+
+    public void setPdfChefUri(String pdfChefUri) {
+        this.pdfChefUri = pdfChefUri;
+    }
+
+    public String getPdfRhUri() {
+        return pdfRhUri;
+    }
+
+    public void setPdfRhUri(String pdfRhUri) {
+        this.pdfRhUri = pdfRhUri;
+    }
+
+    public String getPdfFinalUri() {
+        return pdfFinalUri;
+    }
+
+    public void setPdfFinalUri(String pdfFinalUri) {
+        this.pdfFinalUri = pdfFinalUri;
+    }
+
+    public Date getDateValidationRh() {
+        return dateValidationRh;
+    }
+
+    public void setDateValidationRh(Date dateValidationRh) {
+        this.dateValidationRh = dateValidationRh;
+    }
+
+    public Date getDateValidationMg() {
+        return dateValidationMg;
+    }
+
+    public void setDateValidationMg(Date dateValidationMg) {
+        this.dateValidationMg = dateValidationMg;
+    }
+
+    public Date getDateValidationCaisse() {
+        return dateValidationCaisse;
+    }
+
+    public void setDateValidationCaisse(Date dateValidationCaisse) {
+        this.dateValidationCaisse = dateValidationCaisse;
     }
 
     public Date getDateCreation() {
@@ -246,6 +383,65 @@ public class GmOrdreMission {
 
     public void setParticipants(Set<GmMissionAgent> participants) {
         this.participants = participants;
+    }
+
+    public GmAgent getAgentValidateurRh() {
+        return agentValidateurRh;
+    }
+
+    public void setAgentValidateurRh(GmAgent agentValidateurRh) {
+        this.agentValidateurRh = agentValidateurRh;
+    }
+
+    public GmAgent getAgentValidateurMg() {
+        return agentValidateurMg;
+    }
+
+    public void setAgentValidateurMg(GmAgent agentValidateurMg) {
+        this.agentValidateurMg = agentValidateurMg;
+    }
+
+    public GmAgent getAgentValidateurCaisse() {
+        return agentValidateurCaisse;
+    }
+
+    public void setAgentValidateurCaisse(GmAgent agentValidateurCaisse) {
+        this.agentValidateurCaisse = agentValidateurCaisse;
+    }
+
+    public GmBudgetMission getBudget() {
+        return budget;
+    }
+
+    public void setBudget(GmBudgetMission budget) {
+        this.budget = budget;
+        if (budget != null) {
+            budget.setOrdreMission(this);
+        }
+    }
+
+    public Set<GmMissionNotification> getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(Set<GmMissionNotification> notifications) {
+        this.notifications = notifications;
+    }
+
+    public Integer getSignatureFondeRecue() {
+        return signatureFondeRecue;
+    }
+
+    public void setSignatureFondeRecue(Integer signatureFondeRecue) {
+        this.signatureFondeRecue = signatureFondeRecue;
+    }
+
+    public Integer getSignatureAgentComptableRecue() {
+        return signatureAgentComptableRecue;
+    }
+
+    public void setSignatureAgentComptableRecue(Integer signatureAgentComptableRecue) {
+        this.signatureAgentComptableRecue = signatureAgentComptableRecue;
     }
 
     // Méthode désactivée temporairement pour éviter les cycles de dépendance

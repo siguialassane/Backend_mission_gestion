@@ -23,6 +23,7 @@ import com.example.Gestion_mission.model.GmValidationEtape;
 import com.example.Gestion_mission.model.GmValidationWorkflow;
 import com.example.Gestion_mission.repository.GmAgentRepository;
 import com.example.Gestion_mission.repository.GmBudgetMissionRepository;
+import com.example.Gestion_mission.repository.GmMissionAgentRepository;
 import com.example.Gestion_mission.repository.GmMissionEtapeRepository;
 import com.example.Gestion_mission.repository.GmMissionNotificationRepository;
 import com.example.Gestion_mission.repository.GmMissionRessourceRepository;
@@ -92,6 +93,9 @@ public class GmOrdreMissionService {
     private GmMissionNotificationRepository missionNotificationRepository;
 
     @Autowired
+    private GmMissionAgentRepository missionAgentRepository;
+
+    @Autowired
     private MissionPdfService missionPdfService;
 
     private static final String ETAPE_MG = "MG_BUDGET";
@@ -149,9 +153,10 @@ public class GmOrdreMissionService {
     }
 
     public List<OrdreMissionDTO> getMissionsPourRoleCourant() {
-        if (roleService.utilisateurEstAdmin()) {
-            return getAllOrdresMission();
-        }
+        // ADMIN rôle supprimé dans la nouvelle architecture
+        // if (roleService.utilisateurEstAdmin()) {
+        //     return getAllOrdresMission();
+        // }
 
         String role = roleService.getRoleUtilisateur();
         List<String> statutsAutorises = statutsPourRole(role);
@@ -159,6 +164,25 @@ public class GmOrdreMissionService {
             return getAllOrdresMission();
         }
         return listerParStatut(statutsAutorises);
+    }
+
+    public List<OrdreMissionDTO> getMissionsCreeesParUtilisateur() {
+        Long utilisateurId = roleService.getIdUtilisateurConnecte();
+        if (utilisateurId == null) {
+            logger.warn("Impossible de récupérer les missions personnelles : aucun utilisateur connecté");
+            return List.of();
+        }
+
+        journalService.enregistrerActionConsultation(
+                utilisateurId,
+                "GM_ORDRE_MISSION",
+                "127.0.0.1",
+                "User-Agent"
+        );
+
+        List<GmOrdreMission> missions = ordreMissionRepository.findByIdAgentCreateurOrderByDateCreationDesc(utilisateurId);
+        logger.info("Utilisateur {} récupère {} missions personnelles", utilisateurId, missions.size());
+        return mapper.toDTOList(missions);
     }
 
     public Optional<GmOrdreMission> getOrdreMissionById(Long id) {

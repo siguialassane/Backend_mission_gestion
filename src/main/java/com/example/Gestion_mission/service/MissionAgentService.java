@@ -46,7 +46,7 @@ public class MissionAgentService {
 
     @Transactional
     public GmMissionAgent ajouterParticipant(Long missionId, Long agentId, String roleMission) {
-        if (missionAgentRepository.existsByOrdreMissionIdOrdreMissionAndAgentIdAgent(missionId, agentId)) {
+        if (missionAgentRepository.existsAssociation(missionId, agentId) > 0) {
             throw new IllegalArgumentException("Cet agent est déjà associé à la mission");
         }
 

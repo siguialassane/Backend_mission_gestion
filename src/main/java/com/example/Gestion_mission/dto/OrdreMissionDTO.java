@@ -19,8 +19,20 @@ public class OrdreMissionDTO {
     private Double fraisEstime;
     private Long idAgentCreateur;
     private String statutMission;
+    private String workflowPhase;
+    private String workflowStatut;
+    private String motifRefusGlobal;
+    private String pdfChefUri;
+    private String pdfRhUri;
+    private String pdfFinalUri;
     private Date dateCreation;
     private Date dateMiseAJour;
+    private String entiteCode;
+    private Boolean signatureFondeRecue;
+    private Boolean signatureAgentComptableRecue;
+    private Date dateValidationRh;
+    private Date dateValidationMg;
+    private Date dateValidationCaisse;
 
     // Constructeur vide
     public OrdreMissionDTO() {
@@ -30,8 +42,12 @@ public class OrdreMissionDTO {
     public OrdreMissionDTO(Long idOrdreMission, String codeMission, String objetMission,
                           Date dateDebutMission, Date dateFinMission, String lieuDepart,
                           String lieuDestination, String motifMission, Double fraisEstime,
-                          Long idAgentCreateur, String statutMission, Date dateCreation,
-                          Date dateMiseAJour) {
+                          Long idAgentCreateur, String statutMission, String workflowPhase,
+                          String workflowStatut, String motifRefusGlobal, String pdfChefUri,
+                          String pdfRhUri, String pdfFinalUri, Date dateCreation,
+                          Date dateMiseAJour, String entiteCode,
+                          Boolean signatureFondeRecue, Boolean signatureAgentComptableRecue,
+                          Date dateValidationRh, Date dateValidationMg, Date dateValidationCaisse) {
         this.idOrdreMission = idOrdreMission;
         this.codeMission = codeMission;
         this.objetMission = objetMission;
@@ -43,8 +59,20 @@ public class OrdreMissionDTO {
         this.fraisEstime = fraisEstime;
         this.idAgentCreateur = idAgentCreateur;
         this.statutMission = statutMission;
+        this.workflowPhase = workflowPhase;
+        this.workflowStatut = workflowStatut;
+        this.motifRefusGlobal = motifRefusGlobal;
+        this.pdfChefUri = pdfChefUri;
+        this.pdfRhUri = pdfRhUri;
+        this.pdfFinalUri = pdfFinalUri;
         this.dateCreation = dateCreation;
         this.dateMiseAJour = dateMiseAJour;
+        this.entiteCode = entiteCode;
+        this.signatureFondeRecue = signatureFondeRecue;
+        this.signatureAgentComptableRecue = signatureAgentComptableRecue;
+        this.dateValidationRh = dateValidationRh;
+        this.dateValidationMg = dateValidationMg;
+        this.dateValidationCaisse = dateValidationCaisse;
     }
 
     // Getters et Setters
@@ -136,6 +164,54 @@ public class OrdreMissionDTO {
         this.statutMission = statutMission;
     }
 
+    public String getWorkflowPhase() {
+        return workflowPhase;
+    }
+
+    public void setWorkflowPhase(String workflowPhase) {
+        this.workflowPhase = workflowPhase;
+    }
+
+    public String getWorkflowStatut() {
+        return workflowStatut;
+    }
+
+    public void setWorkflowStatut(String workflowStatut) {
+        this.workflowStatut = workflowStatut;
+    }
+
+    public String getMotifRefusGlobal() {
+        return motifRefusGlobal;
+    }
+
+    public void setMotifRefusGlobal(String motifRefusGlobal) {
+        this.motifRefusGlobal = motifRefusGlobal;
+    }
+
+    public String getPdfChefUri() {
+        return pdfChefUri;
+    }
+
+    public void setPdfChefUri(String pdfChefUri) {
+        this.pdfChefUri = pdfChefUri;
+    }
+
+    public String getPdfRhUri() {
+        return pdfRhUri;
+    }
+
+    public void setPdfRhUri(String pdfRhUri) {
+        this.pdfRhUri = pdfRhUri;
+    }
+
+    public String getPdfFinalUri() {
+        return pdfFinalUri;
+    }
+
+    public void setPdfFinalUri(String pdfFinalUri) {
+        this.pdfFinalUri = pdfFinalUri;
+    }
+
     public Date getDateCreation() {
         return dateCreation;
     }
@@ -150,5 +226,53 @@ public class OrdreMissionDTO {
 
     public void setDateMiseAJour(Date dateMiseAJour) {
         this.dateMiseAJour = dateMiseAJour;
+    }
+
+    public String getEntiteCode() {
+        return entiteCode;
+    }
+
+    public void setEntiteCode(String entiteCode) {
+        this.entiteCode = entiteCode;
+    }
+
+    public Boolean getSignatureFondeRecue() {
+        return signatureFondeRecue;
+    }
+
+    public void setSignatureFondeRecue(Boolean signatureFondeRecue) {
+        this.signatureFondeRecue = signatureFondeRecue;
+    }
+
+    public Boolean getSignatureAgentComptableRecue() {
+        return signatureAgentComptableRecue;
+    }
+
+    public void setSignatureAgentComptableRecue(Boolean signatureAgentComptableRecue) {
+        this.signatureAgentComptableRecue = signatureAgentComptableRecue;
+    }
+
+    public Date getDateValidationRh() {
+        return dateValidationRh;
+    }
+
+    public void setDateValidationRh(Date dateValidationRh) {
+        this.dateValidationRh = dateValidationRh;
+    }
+
+    public Date getDateValidationMg() {
+        return dateValidationMg;
+    }
+
+    public void setDateValidationMg(Date dateValidationMg) {
+        this.dateValidationMg = dateValidationMg;
+    }
+
+    public Date getDateValidationCaisse() {
+        return dateValidationCaisse;
+    }
+
+    public void setDateValidationCaisse(Date dateValidationCaisse) {
+        this.dateValidationCaisse = dateValidationCaisse;
     }
 }
