@@ -55,7 +55,7 @@ public class GmOrdreMissionController {
 
     @GetMapping("/{id}")
     @JournaliserAction(entite = "GM_ORDRE_MISSION", action = "READ")
-    public ResponseEntity<MissionDetailDTO> getOrdreMissionById(@PathVariable Long id) {
+    public ResponseEntity<?> getOrdreMissionById(@PathVariable Long id) {
         return ordreMissionService.getMissionDetail(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
@@ -72,7 +72,7 @@ public class GmOrdreMissionController {
     @PostMapping("/{id}/validation-rh")
     @RoleAutorise(roles = {"RH", "ADMIN"}, peutModifier = true, peutSupprimer = false)
     @JournaliserAction(entite = "GM_ORDRE_MISSION", action = "UPDATE")
-    public ResponseEntity<MissionDetailDTO> validerParRh(@PathVariable Long id,
+    public ResponseEntity<?> validerParRh(@PathVariable Long id,
                                                          @RequestBody @Valid RhValidationRequest request) {
         return ResponseEntity.ok(ordreMissionService.validerParRh(id, request));
     }
@@ -80,7 +80,7 @@ public class GmOrdreMissionController {
     @PostMapping("/{id}/validation-mg")
     @RoleAutorise(roles = {"MOYENS_GENERAUX", "ADMIN"}, peutModifier = true, peutSupprimer = false)
     @JournaliserAction(entite = "GM_ORDRE_MISSION", action = "UPDATE")
-    public ResponseEntity<MissionDetailDTO> validerParMg(@PathVariable Long id,
+    public ResponseEntity<?> validerParMg(@PathVariable Long id,
                                                          @RequestBody @Valid ValidationMgRequest request) {
         return ResponseEntity.ok(ordreMissionService.validerParMg(id, request));
     }
@@ -88,7 +88,7 @@ public class GmOrdreMissionController {
     @PostMapping("/{id}/validation-caisse")
     @RoleAutorise(roles = {"CAISSE", "ADMIN"}, peutModifier = true, peutSupprimer = false)
     @JournaliserAction(entite = "GM_ORDRE_MISSION", action = "UPDATE")
-    public ResponseEntity<MissionDetailDTO> validerParCaisse(@PathVariable Long id,
+    public ResponseEntity<?> validerParCaisse(@PathVariable Long id,
                                                              @RequestBody @Valid ValidationCaisseRequest request) {
         return ResponseEntity.ok(ordreMissionService.validerParCaisse(id, request));
     }
@@ -96,7 +96,7 @@ public class GmOrdreMissionController {
     @PostMapping("/{id}/finalisation-mg")
     @RoleAutorise(roles = {"MOYENS_GENERAUX", "ADMIN"}, peutModifier = true, peutSupprimer = false)
     @JournaliserAction(entite = "GM_ORDRE_MISSION", action = "UPDATE")
-    public ResponseEntity<MissionDetailDTO> finaliserParMg(@PathVariable Long id,
+    public ResponseEntity<?> finaliserParMg(@PathVariable Long id,
                                                            @RequestBody @Valid FinalisationMgRequest request) {
         return ResponseEntity.ok(ordreMissionService.finaliserParMg(id, request));
     }
@@ -104,7 +104,7 @@ public class GmOrdreMissionController {
     @PostMapping("/{id}/cloture-rh")
     @RoleAutorise(roles = {"RH", "ADMIN"}, peutModifier = true, peutSupprimer = false)
     @JournaliserAction(entite = "GM_ORDRE_MISSION", action = "UPDATE")
-    public ResponseEntity<MissionDetailDTO> cloturerParRh(@PathVariable Long id,
+    public ResponseEntity<?> cloturerParRh(@PathVariable Long id,
                                                           @RequestBody @Valid ClotureRhRequest request) {
         return ResponseEntity.ok(ordreMissionService.cloturerParRh(id, request));
     }

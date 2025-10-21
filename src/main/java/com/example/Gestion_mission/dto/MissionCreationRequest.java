@@ -15,6 +15,10 @@ public class MissionCreationRequest {
     private Double fraisEstime;
     private String lieuDepartCode;
     private String lieuDestinationCode;
+    private String nomChauffeur;
+    private String infoVehicule;
+    private String nomAdjudant;
+    private String destinataire;
     private List<MissionParticipantCreationDTO> participants;
     private List<MissionRessourceCreationDTO> ressources;
     private List<MissionEtapeCreationDTO> etapes;
@@ -121,6 +125,38 @@ public class MissionCreationRequest {
 
     public void setEtapes(List<MissionEtapeCreationDTO> etapes) {
         this.etapes = etapes;
+    }
+
+    public String getNomChauffeur() {
+        return nomChauffeur;
+    }
+
+    public void setNomChauffeur(String nomChauffeur) {
+        this.nomChauffeur = nomChauffeur;
+    }
+
+    public String getInfoVehicule() {
+        return infoVehicule;
+    }
+
+    public void setInfoVehicule(String infoVehicule) {
+        this.infoVehicule = infoVehicule;
+    }
+
+    public String getNomAdjudant() {
+        return nomAdjudant;
+    }
+
+    public void setNomAdjudant(String nomAdjudant) {
+        this.nomAdjudant = nomAdjudant;
+    }
+
+    public String getDestinataire() {
+        return destinataire;
+    }
+
+    public void setDestinataire(String destinataire) {
+        this.destinataire = destinataire;
     }
 
     public static class MissionParticipantCreationDTO {

@@ -13,6 +13,12 @@ public class RhValidationRequest {
 
     private String commentaires;
 
+    private String nomChauffeur;
+
+    private String infoVehicule;
+
+    private String nomAdjudant;
+
     private List<MissionCreationRequest.MissionRessourceCreationDTO> ressources;
 
     public String getDecision() {
@@ -45,5 +51,29 @@ public class RhValidationRequest {
 
     public void setRessources(List<MissionCreationRequest.MissionRessourceCreationDTO> ressources) {
         this.ressources = ressources;
+    }
+
+    public String getNomChauffeur() {
+        return nomChauffeur;
+    }
+
+    public void setNomChauffeur(String nomChauffeur) {
+        this.nomChauffeur = nomChauffeur;
+    }
+
+    public String getInfoVehicule() {
+        return infoVehicule;
+    }
+
+    public void setInfoVehicule(String infoVehicule) {
+        this.infoVehicule = infoVehicule;
+    }
+
+    public String getNomAdjudant() {
+        return nomAdjudant;
+    }
+
+    public void setNomAdjudant(String nomAdjudant) {
+        this.nomAdjudant = nomAdjudant;
     }
 }

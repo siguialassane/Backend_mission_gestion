@@ -2,10 +2,13 @@ package com.example.Gestion_mission.controller;
 
 import com.example.Gestion_mission.annotation.JournaliserAction;
 import com.example.Gestion_mission.annotation.RoleAutorise;
+import com.example.Gestion_mission.dto.AgentCreationRequest;
 import com.example.Gestion_mission.model.GmAgent;
+import com.example.Gestion_mission.service.AgentService;
 import com.example.Gestion_mission.service.JournalUtilisateurService;
 import com.example.Gestion_mission.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +22,9 @@ public class AgentController {
     
     @Autowired
     private RoleService roleService;
+    
+    @Autowired
+    private AgentService agentService;
 
     @GetMapping("/profil")
     public ResponseEntity<?> getProfil() {
@@ -28,12 +34,23 @@ public class AgentController {
         return ResponseEntity.ok("Profil de l'utilisateur ID: " + idUtilisateur + ", Role: " + roleUtilisateur);
     }
 
-    @PostMapping("/creer")
-    @RoleAutorise(roles = {"GESTIONNAIRE", "ADMIN"}, peutSupprimer = false, peutModifier = false)
+    @PostMapping
     @JournaliserAction(entite = "GM_AGENT", action = "CREATE")
-    public ResponseEntity<?> creerAgent(@RequestBody GmAgent agent) {
-        // Ici, la logique de création d'agent
-        return ResponseEntity.ok("Agent créé avec succès");
+    public ResponseEntity<?> creerAgent(@RequestBody AgentCreationRequest request) {
+        try {
+            System.out.println("📝 [AGENT-CREATE] Création d'agent: " + request.getNom() + " " + request.getPrenom());
+            GmAgent agentCree = agentService.creerAgent(request);
+            System.out.println("✅ [AGENT-CREATE] Agent créé avec ID: " + agentCree.getIdAgent());
+            return ResponseEntity.status(HttpStatus.CREATED).body(agentCree);
+        } catch (IllegalArgumentException e) {
+            System.err.println("❌ [AGENT-CREATE] Erreur validation: " + e.getMessage());
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (Exception e) {
+            System.err.println("❌ [AGENT-CREATE] Erreur inattendue: " + e.getMessage());
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Erreur lors de la création de l'agent");
+        }
     }
 
     @PutMapping("/modifier/{id}")

@@ -102,6 +102,18 @@ public class GmOrdreMission {
     @Column(name = "SIG_AGENTCPT_RECUE")
     private Integer signatureAgentComptableRecue;
 
+    @Column(name = "NOM_CHAUFFEUR")
+    private String nomChauffeur;
+
+    @Column(name = "INFO_VEHICULE")
+    private String infoVehicule;
+
+    @Column(name = "NOM_ADJUDANT")
+    private String nomAdjudant;
+
+    @Column(name = "DESTINATAIRE")
+    private String destinataire;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_AGENT_VALID_RH")
     private GmAgent agentValidateurRh;
@@ -442,6 +454,38 @@ public class GmOrdreMission {
 
     public void setSignatureAgentComptableRecue(Integer signatureAgentComptableRecue) {
         this.signatureAgentComptableRecue = signatureAgentComptableRecue;
+    }
+
+    public String getNomChauffeur() {
+        return nomChauffeur;
+    }
+
+    public void setNomChauffeur(String nomChauffeur) {
+        this.nomChauffeur = nomChauffeur;
+    }
+
+    public String getInfoVehicule() {
+        return infoVehicule;
+    }
+
+    public void setInfoVehicule(String infoVehicule) {
+        this.infoVehicule = infoVehicule;
+    }
+
+    public String getNomAdjudant() {
+        return nomAdjudant;
+    }
+
+    public void setNomAdjudant(String nomAdjudant) {
+        this.nomAdjudant = nomAdjudant;
+    }
+
+    public String getDestinataire() {
+        return destinataire;
+    }
+
+    public void setDestinataire(String destinataire) {
+        this.destinataire = destinataire;
     }
 
     // Méthode désactivée temporairement pour éviter les cycles de dépendance

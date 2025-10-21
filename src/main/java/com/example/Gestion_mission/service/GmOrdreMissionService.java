@@ -6,6 +6,8 @@ import com.example.Gestion_mission.dto.MissionCreationRequest;
 import com.example.Gestion_mission.dto.MissionDetailDTO;
 import com.example.Gestion_mission.dto.OrdreMissionDTO;
 import com.example.Gestion_mission.dto.RhValidationRequest;
+import com.example.Gestion_mission.dto.MissionDetailViewDTO;
+import com.example.Gestion_mission.repository.MissionDetailViewRepository;
 import com.example.Gestion_mission.dto.ValidationCaisseRequest;
 import com.example.Gestion_mission.dto.ValidationMgRequest;
 import com.example.Gestion_mission.enums.MissionStatus;
@@ -91,6 +93,9 @@ public class GmOrdreMissionService {
 
     @Autowired
     private GmMissionNotificationRepository missionNotificationRepository;
+
+    @Autowired
+    private MissionDetailViewRepository missionDetailViewRepository;
 
     @Autowired
     private GmMissionAgentRepository missionAgentRepository;
@@ -197,27 +202,14 @@ public class GmOrdreMissionService {
         return ordreMissionRepository.findById(id);
     }
 
-    public Optional<MissionDetailDTO> getMissionDetail(Long id) {
+    public Optional<MissionDetailViewDTO> getMissionDetail(Long id) {
         journalService.enregistrerActionConsultation(
             roleService.getIdUtilisateurConnecte(),
             "GM_ORDRE_MISSION",
             "127.0.0.1",
             "User-Agent"
         );
-
-        return ordreMissionRepository.findById(id)
-                .map(mission -> {
-                    var ressources = missionRessourceRepository.findByOrdreMissionIdOrdreMission(id);
-                    var etapes = missionEtapeRepository.findByOrdreMissionIdOrdreMissionOrderByOrdrePassageAsc(id);
-                    var workflow = validationWorkflowRepository.findByOrdreMissionIdOrdreMissionOrderByOrdreValidationAsc(id);
-                    GmRemiseJustificatifs justificatifs = remiseJustificatifsRepository.findByOrdreMissionIdOrdreMission(id)
-                            .orElse(null);
-                    GmBudgetMission budget = budgetMissionRepository.findByOrdreMissionIdOrdreMission(id)
-                            .orElse(null);
-                    var notifications = missionNotificationRepository.findByOrdreMissionIdOrdreMission(id);
-                    var participants = missionAgentRepository.findByOrdreMissionIdOrdreMission(id);
-                    return missionDetailMapper.toDetailDTO(mission, ressources, etapes, workflow, justificatifs, budget, notifications, participants);
-                });
+        return missionDetailViewRepository.findMissionDetailByMissionId(id);
     }
 
     public GmOrdreMission createOrdreMission(MissionCreationRequest request) {
@@ -241,6 +233,10 @@ public class GmOrdreMissionService {
             ? request.getLieuDestination() : "-");
         mission.setMotifMission(request.getMotifMission());
         mission.setEntiteCode(request.getEntiteCode());
+        mission.setNomChauffeur(request.getNomChauffeur());
+        mission.setInfoVehicule(request.getInfoVehicule());
+        mission.setNomAdjudant(request.getNomAdjudant());
+        mission.setDestinataire(request.getDestinataire());
         mission.setStatutMission(MissionStatus.EN_ATTENTE_VALIDATION_RH);
         mission.setWorkflowPhase(PHASE_RH);
         mission.setWorkflowStatut(WORKFLOW_STATUT_EN_ATTENTE);
@@ -319,7 +315,7 @@ public class GmOrdreMissionService {
         return saved;
     }
 
-    public MissionDetailDTO validerParMg(Long missionId, ValidationMgRequest request) {
+    public MissionDetailViewDTO validerParMg(Long missionId, ValidationMgRequest request) {
         GmOrdreMission mission = ordreMissionRepository.findById(missionId)
                 .orElseThrow(() -> new IllegalArgumentException("Mission introuvable"));
         verifierStatutMission(mission, List.of(MissionStatus.EN_ATTENTE_BUDGET_MG),
@@ -420,7 +416,7 @@ public class GmOrdreMissionService {
         return getMissionDetail(missionId).orElseThrow();
     }
 
-    public MissionDetailDTO validerParRh(Long missionId, RhValidationRequest request) {
+    public MissionDetailViewDTO validerParRh(Long missionId, RhValidationRequest request) {
         GmOrdreMission mission = ordreMissionRepository.findById(missionId)
                 .orElseThrow(() -> new IllegalArgumentException("Mission introuvable"));
 
@@ -458,6 +454,17 @@ public class GmOrdreMissionService {
             if (!request.getRessources().isEmpty()) {
                 persistMissionRessources(mission, request.getRessources());
             }
+        }
+
+        // Mise à jour des ressources logistiques par le RH
+        if (request.getNomChauffeur() != null) {
+            mission.setNomChauffeur(request.getNomChauffeur());
+        }
+        if (request.getInfoVehicule() != null) {
+            mission.setInfoVehicule(request.getInfoVehicule());
+        }
+        if (request.getNomAdjudant() != null) {
+            mission.setNomAdjudant(request.getNomAdjudant());
         }
 
         mission.setDateValidationRh(maintenant);
@@ -526,7 +533,7 @@ public class GmOrdreMissionService {
         return getMissionDetail(missionId).orElseThrow();
     }
 
-    public MissionDetailDTO validerParCaisse(Long missionId, ValidationCaisseRequest request) {
+    public MissionDetailViewDTO validerParCaisse(Long missionId, ValidationCaisseRequest request) {
         GmOrdreMission mission = ordreMissionRepository.findById(missionId)
                 .orElseThrow(() -> new IllegalArgumentException("Mission introuvable"));
 
@@ -606,7 +613,7 @@ public class GmOrdreMissionService {
         return getMissionDetail(missionId).orElseThrow();
     }
 
-    public MissionDetailDTO finaliserParMg(Long missionId, FinalisationMgRequest request) {
+    public MissionDetailViewDTO finaliserParMg(Long missionId, FinalisationMgRequest request) {
         GmOrdreMission mission = ordreMissionRepository.findById(missionId)
                 .orElseThrow(() -> new IllegalArgumentException("Mission introuvable"));
 
@@ -668,7 +675,7 @@ public class GmOrdreMissionService {
         return getMissionDetail(missionId).orElseThrow();
     }
 
-    public MissionDetailDTO cloturerParRh(Long missionId, ClotureRhRequest request) {
+    public MissionDetailViewDTO cloturerParRh(Long missionId, ClotureRhRequest request) {
         GmOrdreMission mission = ordreMissionRepository.findById(missionId)
                 .orElseThrow(() -> new IllegalArgumentException("Mission introuvable"));
 
