@@ -1,12 +1,11 @@
 package com.example.Gestion_mission.dto;
 
 public class MissionParticipantDTO {
-
     private Long idMissionAgent;
     private Long agentId;
-    private String matricule;
     private String nom;
     private String prenom;
+    private String matricule;
     private String roleMission;
 
     public MissionParticipantDTO() {
@@ -15,12 +14,13 @@ public class MissionParticipantDTO {
     public MissionParticipantDTO(Long idMissionAgent, Long agentId, String matricule, String nom, String prenom, String roleMission) {
         this.idMissionAgent = idMissionAgent;
         this.agentId = agentId;
-        this.matricule = matricule;
         this.nom = nom;
         this.prenom = prenom;
+        this.matricule = matricule;
         this.roleMission = roleMission;
     }
 
+    // Getters and Setters
     public Long getIdMissionAgent() {
         return idMissionAgent;
     }
@@ -37,14 +37,6 @@ public class MissionParticipantDTO {
         this.agentId = agentId;
     }
 
-    public String getMatricule() {
-        return matricule;
-    }
-
-    public void setMatricule(String matricule) {
-        this.matricule = matricule;
-    }
-
     public String getNom() {
         return nom;
     }
@@ -59,6 +51,14 @@ public class MissionParticipantDTO {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+
+    public String getMatricule() {
+        return matricule;
+    }
+
+    public void setMatricule(String matricule) {
+        this.matricule = matricule;
     }
 
     public String getRoleMission() {

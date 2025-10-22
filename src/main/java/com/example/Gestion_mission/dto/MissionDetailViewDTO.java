@@ -24,6 +24,7 @@ public class MissionDetailViewDTO {
     private String chefMissionPrenom;
     private Long nombreAgents;
     private String itineraireVilles;
+    private String participantsListe;
 
     // Constructeur
     public MissionDetailViewDTO() {}
@@ -195,5 +196,13 @@ public class MissionDetailViewDTO {
 
     public void setItineraireVilles(String itineraireVilles) {
         this.itineraireVilles = itineraireVilles;
+    }
+
+    public String getParticipantsListe() {
+        return participantsListe;
+    }
+
+    public void setParticipantsListe(String participantsListe) {
+        this.participantsListe = participantsListe;
     }
 }

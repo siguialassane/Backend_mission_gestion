@@ -41,6 +41,7 @@ public class MissionDetailViewRepository {
             dto.setChefMissionPrenom(rs.getString("CHEF_MISSION_PRENOM"));
             dto.setNombreAgents(rs.getLong("NOMBRE_AGENTS"));
             dto.setItineraireVilles(rs.getString("ITINERAIRE_VILLES"));
+            dto.setParticipantsListe(rs.getString("PARTICIPANTS_LISTE"));
             return dto;
         }
     };
